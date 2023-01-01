@@ -1,0 +1,94 @@
+ul,
+li {
+  list-style: none;
+}
+
+.signUpScreen {
+  max-width: 350px;
+  padding: 30px 20px 40px;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  margin-top: -100px;
+}
+
+.signUpScreen>form {
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.signUpScreen>form>h1 {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.signUpScreen>form>input {
+  outline-width: 0;
+  height: 40px;
+  margin-bottom: 14px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 15px;
+}
+
+.signUpScreen>form>button {
+  padding: 16px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #e50914;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  margin-top: 20px;
+}
+
+.signUpScreen__gray {
+  color: gray;
+}
+
+.signUpScreen>form>h4 {
+  text-align: left;
+  margin-top: 25px;
+}
+
+.signUpScreen__link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.error__input {
+  border: 4px solid #e50914 !important;
+  transition: all .2s;
+}
+
+.error__label {
+  color: #e50914;
+  font-size: 1rem;
+}
+
+.password__req ul {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.password__req ul li {
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.password__req ul li span {
+  font-size: 16px;
+}
+
+.error {
+  color: #e50914;
+}
+
+.correct {
+  color: green;
+}
