@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../features/userSlice'
 import { auth } from '../firebase'
+import ScrollToTop from '../helper/helper'
 import Nav from '../Nav'
 import './ProfileScreen.css'
 
@@ -13,6 +14,7 @@ const ProfileScreen = () => {
   return (
     <div className='profileScreen'>
       <Nav />
+      <ScrollToTop />
       <div className='profileScreen__body'>
         <h1>Editar Perfil</h1>
         <div className='profileScreen__info'>
@@ -24,8 +26,6 @@ const ProfileScreen = () => {
           <div className='profileScreen__details'>
             <h2>{user.email}</h2>
             <div className='profileScreen__plans'>
-              <h3>Planes</h3>
-
               <button className='profileScreen__signOut' onClick={() => auth.signOut()}>Cerrar Sesión</button>
             </div>
           </div>

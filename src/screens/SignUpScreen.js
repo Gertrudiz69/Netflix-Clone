@@ -3,6 +3,8 @@ import { auth } from "../firebase";
 import "./SignUpScreen.css";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
+import { BsArrowLeftShort } from 'react-icons/bs'
+import { useNavigate } from "react-router-dom";
 
 function SignUpScreen() {
   const [signUp, setSignUp] = useState(false);
@@ -12,6 +14,8 @@ function SignUpScreen() {
   const [checkLetter, setCheckLetter] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
   const [checkSpecial, setCheckSpecial] = useState(false);
+
+  const navigate = useNavigate()
 
   function valid() {
     const pass1 = document.querySelector("#pass-1");
@@ -141,7 +145,10 @@ function SignUpScreen() {
     <div className="signUpScreen">
       {!signUp ? (
         <form>
-          <h1>Inicia Sesión</h1>
+          <h1>
+            <BsArrowLeftShort onClick={() => document.location.reload()}/>
+            Inicia Sesión
+          </h1>
           <input
             ref={emailRef}
             placeholder="Email"
@@ -170,7 +177,10 @@ function SignUpScreen() {
         </form>
       ) : (
         <form>
-          <h1>Registrate</h1>
+          <h1>
+            <BsArrowLeftShort onClick={() => document.location.reload()}/>
+            Registrate
+          </h1>
           <input
             ref={emailRef}
             placeholder="Email"

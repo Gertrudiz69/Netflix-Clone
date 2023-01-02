@@ -96,6 +96,16 @@
   }
 }
 
+@media (max-width: 450px) {
+  .banner {
+    height: 68vh;
+  }
+
+  .banner--fadeBottom {
+    top: calc(68vh - 7.3rem);
+  }
+}
+
 @media (max-width: 320px) {
   .banner__title {
     font-size: 1.5rem;
