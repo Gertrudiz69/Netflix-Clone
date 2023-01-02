@@ -77,7 +77,11 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 450px) {
+  .banner {
+    min-height: fit-content;
+  }
+
   .banner__contents {
     padding-top: 100px;
     margin-left: 15px;

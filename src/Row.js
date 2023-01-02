@@ -7,7 +7,18 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
   const [movies, setMovies] = useState([]);
   const [displayArrL, setDisplayArrL] = useState(false)
   const [displayArrR, setDisplayArrR] = useState(true)
+  const [movil, setMovil] = useState(false);
   const row = useRef(null)
+
+  const movilBanner = () => {
+    const w = window.innerWidth;
+
+    if (w < 768) {
+      setMovil(true);
+    } else {
+      setMovil(false);
+    }
+  };
   
   const displayArrow = () => {
     const row = document.querySelector("#" + id);
@@ -70,6 +81,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
       return request;
     }
 
+    movilBanner()
     fetchData();
   }, [fetchUrl]);
 
@@ -77,9 +89,11 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
     <div className="row">
       <h2>{title}</h2>
       <div className="row__posters" id={id} ref={row}>
-        <div id={idArrowL} className="arrow__l" onClick={scrollL}>
-          {displayArrL ? <IoIosArrowBack /> : null}
-        </div>
+        {!movil ? (
+          <div id={idArrowL} className="arrow__l" onClick={scrollL}>
+            {displayArrL ? <IoIosArrowBack /> : null}
+          </div>
+        ) : null }
         {movies.map(
           (movie) =>
             (isLargeRow ? movie.poster_path : movie.backdrop_path) && (
@@ -93,9 +107,11 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
               />
             )
         )}
-        <div id={idArrowR} className="arrow__r" onClick={scrollR}>
-          {displayArrR ? <IoIosArrowForward /> : null}
-        </div>
+        {!movil ? (
+          <div id={idArrowR} className="arrow__r" onClick={scrollR}>
+            {displayArrR ? <IoIosArrowForward /> : null}
+          </div>
+        ) : null }
       </div>
     </div>
   );
