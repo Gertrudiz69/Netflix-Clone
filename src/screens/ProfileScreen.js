@@ -5,10 +5,12 @@ import { auth } from '../firebase'
 import ScrollToTop from '../helper/helper'
 import Nav from '../Nav'
 import './ProfileScreen.css'
+import { BsArrowLeftShort } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom'
 
 const ProfileScreen = () => {
   const user = useSelector(selectUser)
-
+  const navigate = useNavigate()
 
 
   return (
@@ -16,7 +18,10 @@ const ProfileScreen = () => {
       <Nav />
       <ScrollToTop />
       <div className='profileScreen__body'>
-        <h1>Editar Perfil</h1>
+        <h1>
+          <BsArrowLeftShort onClick={() => navigate('/')} />
+          Editar Perfil
+        </h1>
         <div className='profileScreen__info'>
           <img
             className=''

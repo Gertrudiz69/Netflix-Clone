@@ -26,7 +26,6 @@ function LoginScreen() {
             <h3>¿Quieres ver Netflix ya? Ingresa tu email para crear una cuenta o reiniciar tu membresía de Netflix.</h3>
             <div className='loginScreen__input'>
               <form>
-                <input type='email' placeholder='Email'/>
                 <button className='loginScreen__registrate' onClick={() => setSignIn(true)}>
                   Registrate
                 </button>

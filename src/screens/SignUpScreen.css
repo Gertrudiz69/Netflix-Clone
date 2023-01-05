@@ -104,6 +104,52 @@ li {
   color: green;
 }
 
+.error__alert {
+  transition: all 0.5s;
+  position: absolute;
+  height: 175px;
+  width: 400px;
+  background-color: #e5091499;
+  backdrop-filter: blur(8px);
+  left: calc(50% - 200px);
+  top: calc(50% - 150px);
+  display: none;
+  border-radius: 18px;
+}
+
+.error__details {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error__details>svg {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.error__details>button {
+  border: none;
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.error--window {
+  height: fit-content;
+  width: 100%;
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+
+
 @media (max-width: 450px) and (orientation: landscape) {
   * {
     display: none;
@@ -165,6 +211,11 @@ li {
   .signUpScreen>form>h1 {
     width: 330px;
   }
+
+  .error__alert {
+    width: 300px;
+    left: calc(50% - 150px)
+  }
 }
 
 @media (max-width: 375px) {
@@ -175,6 +226,11 @@ li {
 
   .password__req ul li span {
     font-size: 12px;
+  }
+
+  .error__alert {
+    width: 250px;
+    left: calc(50% - 125px);
   }
 }
 

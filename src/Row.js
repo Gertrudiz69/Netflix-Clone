@@ -36,7 +36,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
       setDisplayArrL(true)
     }
     
-    if(currentScroll > 2200) {
+    if(currentScroll > 2250) {
       arrowRight.classList.add('displayNone')
       arrowRight.classList.remove('displayIn')
       setDisplayArrR(false)

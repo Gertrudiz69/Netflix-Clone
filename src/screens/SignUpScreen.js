@@ -3,8 +3,8 @@ import { auth } from "../firebase";
 import "./SignUpScreen.css";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
-import { BsArrowLeftShort } from 'react-icons/bs'
-import { useNavigate } from "react-router-dom";
+import { BsArrowLeftShort } from "react-icons/bs";
+import { RxCrossCircled } from 'react-icons/rx'
 
 function SignUpScreen() {
   const [signUp, setSignUp] = useState(false);
@@ -14,8 +14,6 @@ function SignUpScreen() {
   const [checkLetter, setCheckLetter] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
   const [checkSpecial, setCheckSpecial] = useState(false);
-
-  const navigate = useNavigate()
 
   function valid() {
     const pass1 = document.querySelector("#pass-1");
@@ -86,11 +84,35 @@ function SignUpScreen() {
       special.classList.add("error");
       setCheckSpecial(false);
     }
-
   }
-  if(signUp === true) {
+  if (signUp === true) {
     window.addEventListener("input", valid);
   }
+
+  const errWindow = useRef(null)
+  const errAlert = useRef(null)
+
+  const errorAlert = (error) => {
+    
+    console.log(error.code);
+    errAlert.current.style.display= 'block'
+
+    const errorMessages = {
+      "auth/invalid-email": "La dirección de correo electrónico no es válida",
+      "auth/user-not-found":
+        "No se ha encontrado ningún usuario con esa dirección de correo electrónico",
+      "auth/wrong-password": "La contraseña es incorrecta",
+      "auth/email-already-in-use":
+        "La dirección de correo electrónico ya está en uso por otro usuario",
+      "auth/weak-password": "La contraseña es demasiado débil",
+      "auth/too-many-requests": "Demasiados intentos fallidos, intentalo en unos minutos",
+      "auth/internal-error": "Error interno, intentalo de nuevo"
+    };
+
+    errWindow.current.innerText =
+      errorMessages[error.code] || "Error desconocido, intentalo en un rato.";
+  };
+
 
   const validate = () => {
     const pass1 = document.querySelector("#pass-1");
@@ -117,11 +139,8 @@ function SignUpScreen() {
         emailRef.current.value,
         passwordRef.current.value
       )
-      .then((authUser) => {
-        console.log(authUser);
-      })
       .catch((error) => {
-        alert(error.message)
+        errorAlert(error);
       });
   };
 
@@ -133,126 +152,132 @@ function SignUpScreen() {
         emailRef.current.value,
         passwordRef.current.value
       )
-      .then((authUser) => {
-        console.log(authUser);
-      })
       .catch((error) => {
-        console.log(error.message);
+        errorAlert(error);
       });
   };
 
   return (
-    <div className="signUpScreen">
-      {!signUp ? (
-        <form>
-          <h1>
-            <BsArrowLeftShort onClick={() => document.location.reload()}/>
-            Inicia Sesión
-          </h1>
-          <input
-            ref={emailRef}
-            placeholder="Email"
-            type="email"
-            autoComplete="username"
-          />
-          <input
-            ref={passwordRef}
-            placeholder="Contraseña"
-            type="password"
-            autoComplete="current-password"
-          />
-          <button type="submit" onClick={signIn}>
-            Inicia Sesión
+    <>
+      <div className="error__alert" id="error__alert" ref={errAlert}>
+        <div className="error__details">
+          <RxCrossCircled />
+          <div className="error--window" id="error--window" ref={errWindow}></div>
+          <button id="closeAlert" onClick={() => errAlert.current.style.display= 'none'}>
+            Cerrar
           </button>
+        </div>
+      </div>
 
-          <h4>
-            <span className="signUpScreen__gray">¿Nuevo en Netflix? </span>
-            <span
-              className="signUpScreen__link"
-              onClick={() => setSignUp(true)}
-            >
-              Registrate ahora.
-            </span>
-          </h4>
-        </form>
-      ) : (
-        <form>
-          <h1>
-            <BsArrowLeftShort onClick={() => document.location.reload()}/>
-            Registrate
-          </h1>
-          <input
-            ref={emailRef}
-            placeholder="Email"
-            type="email"
-            autoComplete="username"
-            required
-          />
-          <input
-            id="pass-1"
-            placeholder="Nueva contraseña"
-            type="password"
-            autoComplete="new-password"
-            required
-            minLength={8}
-          />
-          <input
-            id="pass-2"
-            placeholder="Confirma la contraseña"
-            type="password"
-            autoComplete="new-password"
-            required
-          />
-          <input
-            hidden
-            id="pass-ver"
-            type="password"
-            ref={passwordRef}
-          />
-          <div className="password__req">
-            <ul>
-              <li id="length" className="error">
-                {checkLength ? <FaCheck /> : <ImCross />}{" "}
-                <span>Minimo 8 caracteres</span>
-              </li>
-              <li id="equal" className="error">
-                {checkEqual ? <FaCheck /> : <ImCross />}{" "}
-                <span>Deben coincidir</span>
-              </li>
-              <li id="capital" className="error">
-                {checkCapital ? <FaCheck /> : <ImCross />}{" "}
-                <span>Una letra en mayuscula</span>
-              </li>
-              <li id="letter" className="error">
-                {checkLetter ? <FaCheck /> : <ImCross />}{" "}
-                <span>Una letra en minuscula</span>
-              </li>
-              <li id="number" className="error">
-                {checkNumber ? <FaCheck /> : <ImCross />}{" "}
-                <span>Un número</span>
-              </li>
-              <li id="special" className="error">
-                {checkSpecial ? <FaCheck /> : <ImCross />}{" "}
-                <span>Un caracter especial</span>
-              </li>
-            </ul>
-          </div>
-          <button type="submit" onClick={reg}>
-            Registrate
-          </button>
-
-          <h4>
-            <span className="signUpScreen__gray">¿Ya tienes una cuenta? </span>
-            <span
-              className="signUpScreen__link"
-              onClick={() => setSignUp(false)}
-            >
+      <div className="signUpScreen">
+        {!signUp ? (
+          <form>
+            <h1>
+              <BsArrowLeftShort onClick={() => document.location.reload()} />
               Inicia Sesión
-            </span>
-          </h4>
-        </form>
-      )}
-    </div>
+            </h1>
+            <input
+              ref={emailRef}
+              placeholder="Email"
+              type="email"
+              autoComplete="username"
+            />
+            <input
+              ref={passwordRef}
+              placeholder="Contraseña"
+              type="password"
+              autoComplete="current-password"
+            />
+            <button type="submit" onClick={signIn}>
+              Inicia Sesión
+            </button>
+
+            <h4>
+              <span className="signUpScreen__gray">¿Nuevo en Netflix? </span>
+              <span
+                className="signUpScreen__link"
+                onClick={() => setSignUp(true)}
+              >
+                Registrate ahora.
+              </span>
+            </h4>
+          </form>
+        ) : (
+          <form>
+            <h1>
+              <BsArrowLeftShort onClick={() => document.location.reload()} />
+              Registrate
+            </h1>
+            <input
+              ref={emailRef}
+              placeholder="Email"
+              type="email"
+              autoComplete="username"
+              required
+            />
+            <input
+              id="pass-1"
+              placeholder="Nueva contraseña"
+              type="password"
+              autoComplete="new-password"
+              required
+              minLength={8}
+            />
+            <input
+              id="pass-2"
+              placeholder="Confirma la contraseña"
+              type="password"
+              autoComplete="new-password"
+              required
+            />
+            <input hidden id="pass-ver" type="password" ref={passwordRef} />
+            <div className="password__req">
+              <ul>
+                <li id="length" className="error">
+                  {checkLength ? <FaCheck /> : <ImCross />}{" "}
+                  <span>Minimo 8 caracteres</span>
+                </li>
+                <li id="equal" className="error">
+                  {checkEqual ? <FaCheck /> : <ImCross />}{" "}
+                  <span>Deben coincidir</span>
+                </li>
+                <li id="capital" className="error">
+                  {checkCapital ? <FaCheck /> : <ImCross />}{" "}
+                  <span>Una letra en mayuscula</span>
+                </li>
+                <li id="letter" className="error">
+                  {checkLetter ? <FaCheck /> : <ImCross />}{" "}
+                  <span>Una letra en minuscula</span>
+                </li>
+                <li id="number" className="error">
+                  {checkNumber ? <FaCheck /> : <ImCross />}{" "}
+                  <span>Un número</span>
+                </li>
+                <li id="special" className="error">
+                  {checkSpecial ? <FaCheck /> : <ImCross />}{" "}
+                  <span>Un caracter especial</span>
+                </li>
+              </ul>
+            </div>
+            <button type="submit" onClick={reg}>
+              Registrate
+            </button>
+
+            <h4>
+              <span className="signUpScreen__gray">
+                ¿Ya tienes una cuenta?{" "}
+              </span>
+              <span
+                className="signUpScreen__link"
+                onClick={() => setSignUp(false)}
+              >
+                Inicia Sesión
+              </span>
+            </h4>
+          </form>
+        )}
+      </div>
+    </>
   );
 }
 
