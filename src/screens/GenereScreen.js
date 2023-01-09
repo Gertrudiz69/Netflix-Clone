@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import GenereGrid from '../GenereGrid'
 import Nav from '../Nav'
 import requests from '../Request'
@@ -86,6 +86,9 @@ function GenereScreen() {
       case '/movies/genere/878':
         Url = requests.fetchScienceFictionMovies
         id = 878
+        break
+      default:
+        Url = ''
         break
       } 
       return (Url, id)
