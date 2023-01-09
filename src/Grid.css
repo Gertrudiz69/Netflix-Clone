@@ -54,10 +54,20 @@
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
   .grid__component img {
     width: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .grid__component img {
+    width: 75px;
   }
 }
