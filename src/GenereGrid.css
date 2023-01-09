@@ -21,3 +21,13 @@
   display: flex;
   align-items: center;
 }
+
+@media (max-width: 450px) {
+  .genereGrid__title {
+    font-size: 32px;
+  }
+
+  .genereGrid__info>span {
+    font-size: 16px;
+  }
+}
