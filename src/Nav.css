@@ -120,17 +120,16 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .nav__dropdownLinks {
     position: absolute;
-    left: 35px;
+    left: 75px;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 450px) {
   .nav__dropdownLinks {
-    margin-top: 15px;
-    left: 35px;
+    left: 30px;
   }
 
   .nav__dropdownLinks>a {
@@ -138,6 +137,16 @@
     height: fit-content;
     font-size: 12px;
   }
+}
+
+
+@media (max-width: 375px) {
+  .nav__dropdownLinks {
+    margin-top: 15px;
+    left: 35px;
+  }
+
+
 }
 
 @media (max-width: 320px) {
