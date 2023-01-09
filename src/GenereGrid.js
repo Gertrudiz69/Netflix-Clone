@@ -13,7 +13,7 @@ function GenereGrid({ fetchUrl, idUrl }) {
   const movilBanner = () => {
     const w = window.innerWidth;
 
-    if (w < 768) {
+    if (w <= 768) {
       setMovil(true);
     } else {
       setMovil(false);
@@ -50,7 +50,7 @@ function GenereGrid({ fetchUrl, idUrl }) {
           backgroundImage: `url('https://image.tmdb.org/t/p/original${
             movil ? movieBanner?.poster_path : movieBanner?.backdrop_path
           }')`,
-          backgroundPosition: `${movil ? 'center top' : 'center top'}`,
+          backgroundPosition: `${movil ? 'center top' : 'center center'}`,
         }}
       >
         <div className="banner--fadeBottom" />

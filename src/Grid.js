@@ -9,7 +9,7 @@ function Grid({ fetchUrl }) {
   const movilBanner = () => {
     const w = window.innerWidth;
 
-    if (w < 768) {
+    if (w <= 768) {
       setMovil(true);
     } else {
       setMovil(false);
