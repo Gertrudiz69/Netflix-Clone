@@ -123,7 +123,7 @@
 @media (max-width: 600px) {
   .nav__dropdownLinks {
     position: absolute;
-    left: 75px;
+    left: 50px;
   }
 }
 
@@ -135,7 +135,7 @@
   .nav__dropdownLinks>a {
     padding: 3px 5px;
     height: fit-content;
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -143,7 +143,7 @@
 @media (max-width: 375px) {
   .nav__dropdownLinks {
     margin-top: 15px;
-    left: 35px;
+    left: 10px;
   }
 
 
@@ -164,5 +164,13 @@
 
   .nav__dropdownButton {
     font-size: 14px;
+  }
+
+  .nav__dropdownLinks {
+    left: 10px;
+  }
+
+  .nav__dropdownLinks>a {
+    font-size: 13px;
   }
 }

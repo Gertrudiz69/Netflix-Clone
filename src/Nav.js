@@ -5,7 +5,7 @@ import "./Nav.css";
 import axios from "./axios";
 import requests from "./Request";
 
-function Nav() {
+function Nav({ isProfile }) {
   const [show, setShow] = useState(false)
   const [genere, setGenere] = useState([])
 
@@ -44,7 +44,7 @@ function Nav() {
               navigate('/')
             }}
           />
-          <div className="nav__links">
+          {isProfile ? null : (<div className="nav__links">
             <Link onClick={() => window.scrollTo(0,0)}>Inicio</Link>
             <div className="nav__dropdown">
               <button className="nav__dropdownButton">Géneros <IoIosArrowForward /></button>
@@ -55,7 +55,7 @@ function Nav() {
                 )}
               </div>
             </div>
-          </div>
+          </div>)}
         </div>
         <img
           className="nav__avatar"

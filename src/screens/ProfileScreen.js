@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../features/userSlice'
 import { auth } from '../firebase'
-import ScrollToTop from '../helper/helper'
 import Nav from '../Nav'
 import './ProfileScreen.css'
 import { BsArrowLeftShort } from "react-icons/bs";
@@ -11,12 +10,13 @@ import { useNavigate } from 'react-router-dom'
 const ProfileScreen = () => {
   const user = useSelector(selectUser)
   const navigate = useNavigate()
+  // eslint-disable-next-line
+  const [profile, setProfile] = useState(true)
 
 
   return (
     <div className='profileScreen'>
-      <Nav />
-      <ScrollToTop />
+      <Nav isProfile={profile}/>
       <div className='profileScreen__body'>
         <h1>
           <BsArrowLeftShort onClick={() => navigate('/')} />

@@ -88,6 +88,12 @@
   }
 }
 
+@media (max-width: 375px) {
+  .profileScreen__body>h1 {
+    font-size: 30px;
+  }
+}
+
 @media (max-width: 320px) {
   .profileScreen__body>h1 {
     font-size: 24px;
