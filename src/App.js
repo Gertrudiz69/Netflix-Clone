@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
+import GenereScreen from "./screens/GenereScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
@@ -36,6 +37,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomeScreen />} />
             <Route exact path="/profile" element={<ProfileScreen />} />
+            <Route exact path="/movies/genere/:id" element={<GenereScreen />} />
           </Routes>
         )}
       </Router>

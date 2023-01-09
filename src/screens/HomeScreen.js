@@ -57,7 +57,7 @@ function HomeScreen() {
         id= 'horror'
         idArrowR='arrowHorrorR'
         idArrowL='arrowHorrorL'
-        fetchUrl={requests.fetchhorrorMovies}
+        fetchUrl={requests.fetchHorrorMovies}
         isLargeRow
       />
       <Row 

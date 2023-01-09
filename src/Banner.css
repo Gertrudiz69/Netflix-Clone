@@ -1,6 +1,6 @@
 .banner {
   position: relative;
-  height: 90vh;
+  height: 100vh;
   color: white;
   object-fit: contain;
   margin-bottom: 30px;
@@ -41,7 +41,7 @@
       rgba(37, 37, 37, 0.61),
       #111);
   position: absolute;
-  top: calc(90vh - 7.3rem);
+  top: calc(100vh - 7.3rem);
   left: 0;
 }
 
@@ -78,10 +78,6 @@
 }
 
 @media (max-width: 450px) {
-  .banner {
-    min-height: fit-content;
-  }
-
   .banner__contents {
     padding-top: 100px;
     margin-left: 15px;
@@ -94,9 +90,7 @@
   .banner__description {
     max-width: 80vw;
   }
-}
 
-@media (max-width: 450px) {
   .banner {
     height: 68vh;
   }

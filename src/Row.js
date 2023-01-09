@@ -36,7 +36,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
       setDisplayArrL(true)
     }
     
-    if(currentScroll > 2250) {
+    if(currentScroll > 2220) {
       arrowRight.classList.add('displayNone')
       arrowRight.classList.remove('displayIn')
       setDisplayArrR(false)
@@ -104,6 +104,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
                   isLargeRow ? movie.poster_path : movie.backdrop_path
                 }`}
                 alt={movie?.name || movie?.title || movie?.original_name}
+                loading='lazy'
               />
             )
         )}
