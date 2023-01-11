@@ -24,7 +24,8 @@ const requests = {
   fetchThrillerMovies: `/discover/movie?api_key=${API_KEY}&with_generes=53&language=es-MX`,
   fetchWarMovies: `/discover/movie?api_key=${API_KEY}&with_generes=10752&language=es-MX`,
   fetchWesternMovies: `/discover/movie?api_key=${API_KEY}&with_generes=37&language=es-MX`,
-  fetchGenereMovies: `/genre/movie/list?api_key=${API_KEY}&language=es-MX&language=es-MX`,
+  fetchGenereMovies: `/genre/movie/list?api_key=${API_KEY}&language=es-MX`,
+  fetchMovieID : `?api_key=${API_KEY}&language=es-MX`
 };
 
 export default requests;

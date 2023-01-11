@@ -2,6 +2,7 @@ import axios from "./axios";
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "./Row.css";
+import { useNavigate } from "react-router-dom";
 
 const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) => {
   const [movies, setMovies] = useState([]);
@@ -9,6 +10,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
   const [displayArrR, setDisplayArrR] = useState(true)
   const [movil, setMovil] = useState(false);
   const row = useRef(null)
+  const navigate = useNavigate()
 
   const movilBanner = () => {
     const w = window.innerWidth;
@@ -105,6 +107,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
                 }`}
                 alt={movie?.name || movie?.title || movie?.original_name}
                 loading='lazy'
+                onClick={() => navigate(`/movie/${movie.id}`)}
               />
             )
         )}

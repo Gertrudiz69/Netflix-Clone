@@ -1,6 +1,8 @@
 import axios from "./axios";
 import React, { useEffect, useState } from "react";
 import "./Grid.css";
+import { BiInfoCircle } from 'react-icons/bi'
+import { Link } from "react-router-dom";
 
 function Grid({ fetchUrl }) {
   const [movieGrid, setMovieGrid] = useState([]);
@@ -19,7 +21,7 @@ function Grid({ fetchUrl }) {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      setMovieGrid(request.data.results);
+      setMovieGrid(request.data.results.filter(movie => movie.backdrop_path && movie.poster_path));
       return request;
     }
     movilBanner();
@@ -48,6 +50,7 @@ function Grid({ fetchUrl }) {
           {movil ? null : (
             <div className="grid__details">
               <h1>{truncate(movie.title, 35)}</h1>
+              <Link to={`/movie/${movie.id}`} ><BiInfoCircle /></Link>
             </div>
           )}
         </div>

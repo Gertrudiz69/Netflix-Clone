@@ -76,7 +76,7 @@
 
 @media (max-width: 450px) {
   .profileScreen__body>h1 {
-    font-size: 36px;
+    font-size: 30px;
   }
 
   .profileScreen {
@@ -90,7 +90,7 @@
 
 @media (max-width: 375px) {
   .profileScreen__body>h1 {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 

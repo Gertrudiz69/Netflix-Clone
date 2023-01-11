@@ -7,6 +7,7 @@ import { auth } from "./firebase";
 import GenereScreen from "./screens/GenereScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import MovieScreen from "./screens/MovieScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/" element={<HomeScreen />} />
             <Route exact path="/profile" element={<ProfileScreen />} />
             <Route exact path="/movies/genere/:id" element={<GenereScreen />} />
+            <Route exact path="/movie/:id" element={<MovieScreen />} />
           </Routes>
         )}
       </Router>
