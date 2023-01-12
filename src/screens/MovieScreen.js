@@ -3,6 +3,7 @@ import './MovieScreen.css'
 import Nav from '../Nav'
 import axios from '../axios';
 import requests from '../Request';
+import Rating from '../Rating';
 
 function MovieScreen() {
   const [movie, setMovie] = useState([])
@@ -37,6 +38,7 @@ function MovieScreen() {
           <div className='movieScreen__details'>
             <h1>{movie.title} <span>({date})</span></h1>
             <p>{movie.overview}</p>
+            <Rating ratingNum={(movie.vote_average)/10} />
           </div>
         </div>
       </div>

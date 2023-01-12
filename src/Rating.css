@@ -1,0 +1,19 @@
+.rating {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating__num {
+  position: absolute;
+  font-size: 40px;
+  font-weight: 800;
+  color: white;
+}
+
+.rating__num span {
+  font-size: small;
+  vertical-align: super;
+}
