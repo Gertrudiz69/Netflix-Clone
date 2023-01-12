@@ -50,7 +50,7 @@ function Banner() {
         backgroundPosition: "center center",
       }}
     >
-      {setMovil ? (
+      {!movil ? (
         <>
           <div className="banner__contents">
             <h1 className="banner__title">
