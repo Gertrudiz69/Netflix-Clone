@@ -4,7 +4,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "./Row.css";
 import { useNavigate } from "react-router-dom";
 
-const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) => {
+const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTvSeries}) => {
   const [movies, setMovies] = useState([]);
   const [displayArrL, setDisplayArrL] = useState(false)
   const [displayArrR, setDisplayArrR] = useState(true)
@@ -38,7 +38,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
       setDisplayArrL(true)
     }
     
-    if(currentScroll > 2220) {
+    if(currentScroll > 2200) {
       arrowRight.classList.add('displayNone')
       arrowRight.classList.remove('displayIn')
       setDisplayArrR(false)
@@ -79,7 +79,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      setMovies(request.data.results);
+      setMovies(request.data.results.filter(movie => movie.backdrop_path && movie.poster_path));
       return request;
     }
 
@@ -107,7 +107,13 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL }) =>
                 }`}
                 alt={movie?.name || movie?.title || movie?.original_name}
                 loading='lazy'
-                onClick={() => navigate(`/movie/${movie.id}`)}
+                onClick={() => {
+                  if(isTvSeries === true || movie?.media_type === 'tv') {
+                    navigate(`/tv/${movie.id}`)
+                } else {
+                  navigate(`/movie/${movie.id}`)
+                }
+              }}
               />
             )
         )}

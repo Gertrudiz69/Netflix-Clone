@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import MovieScreen from "./screens/MovieScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import TvScreen from "./screens/TvScreen";
 
 function App() {
   const user = useSelector(selectUser);
@@ -40,6 +41,7 @@ function App() {
             <Route exact path="/profile" element={<ProfileScreen />} />
             <Route exact path="/movies/genere/:id" element={<GenereScreen />} />
             <Route exact path="/movie/:id" element={<MovieScreen />} />
+            <Route exact path="/tv/:id" element={<TvScreen />} />
           </Routes>
         )}
       </Router>

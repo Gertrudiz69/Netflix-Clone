@@ -15,7 +15,7 @@ function MovieScreen() {
   
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get('/movie/' + movieId + requests.fetchMovieID)
+      const request = await axios.get('/movie/' + movieId + requests.fetchByID)
       setMovie(request.data)
       const dateMovie = request.data.release_date
       const dateMovieArr = dateMovie.split('-')
@@ -27,8 +27,6 @@ function MovieScreen() {
   }, [movieId])
   
   const img_url = "https://image.tmdb.org/t/p/original";
-
-  console.log(movie);
 
   return (
     <>

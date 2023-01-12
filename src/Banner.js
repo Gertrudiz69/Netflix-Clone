@@ -2,10 +2,12 @@ import axios from "./axios";
 import React, { useEffect, useState } from "react";
 import "./Banner.css";
 import requests from "./Request";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
   const [movil, setMovil] = useState(false);
+  const navigate = useNavigate()
 
   const movilBanner = () => {
     const w = window.innerWidth;
@@ -21,7 +23,7 @@ function Banner() {
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOriginals);
       setMovie(
-        request.data.results[
+        request.data.results.filter(movie => movie.backdrop_path && movie.poster_path)[
           Math.floor(Math.random() * request.data.results.length - 1)
         ]
       );
@@ -48,14 +50,14 @@ function Banner() {
         backgroundPosition: "center center",
       }}
     >
-      {!setMovil ? (
+      {setMovil ? (
         <>
           <div className="banner__contents">
             <h1 className="banner__title">
               {movie?.name || movie?.title || movie?.original_name}
             </h1>
             <div className="banner__buttons">
-              <button className="banner__button">Ver</button>
+              <button className="banner__button" onClick={() => navigate(`/tv/${movie.id}`)}>Ver</button>
               <button className="banner__button">Mi Lista</button>
             </div>
             <h1 className="banner__description">

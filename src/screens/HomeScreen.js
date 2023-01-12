@@ -19,6 +19,7 @@ function HomeScreen() {
         idArrowL='arrowOriginalesL'
         fetchUrl={requests.fetchNetflixOriginals}
         isLargeRow
+        isTvSeries = {true}
       />
       <Row 
         title='En tendencias'
