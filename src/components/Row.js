@@ -1,4 +1,4 @@
-import axios from "./axios";
+import axios from "../axios";
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "./Row.css";

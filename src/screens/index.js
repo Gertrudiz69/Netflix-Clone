@@ -1,0 +1,7 @@
+export { default as GenereScreen } from '../screens/GenereScreen'
+export { default as HomeScreen } from '../screens/HomeScreen'
+export { default as LoginScreen } from '../screens/LoginScreen'
+export { default as MovieScreen } from '../screens/MovieScreen'
+export { default as ProfileScreen } from '../screens/ProfileScreen'
+export { default as SignUpScreen } from '../screens/SignUpScreen'
+export { default as TvScreen } from '../screens/TvScreen'

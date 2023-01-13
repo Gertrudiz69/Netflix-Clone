@@ -1,15 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
-import GenereScreen from "./screens/GenereScreen";
-import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
-import MovieScreen from "./screens/MovieScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import TvScreen from "./screens/TvScreen";
+import { GenereScreen, HomeScreen, LoginScreen, MovieScreen, ProfileScreen, TvScreen } from './screens'
 
 function App() {
   const user = useSelector(selectUser);
@@ -42,6 +37,7 @@ function App() {
             <Route exact path="/movies/genere/:id" element={<GenereScreen />} />
             <Route exact path="/movie/:id" element={<MovieScreen />} />
             <Route exact path="/tv/:id" element={<TvScreen />} />
+            <Route path="*" element={<Navigate to={'/'} />} />
           </Routes>
         )}
       </Router>

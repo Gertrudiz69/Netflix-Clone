@@ -1,7 +1,7 @@
-import axios from "./axios";
+import axios from "../axios";
 import React, { useEffect, useState } from "react";
 import "./Banner.css";
-import requests from "./Request";
+import requests from "../Request";
 import { useNavigate } from "react-router-dom";
 
 function Banner() {

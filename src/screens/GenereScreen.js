@@ -1,6 +1,5 @@
 import React from 'react'
-import GenereGrid from '../GenereGrid'
-import Nav from '../Nav'
+import { GenereGrid, Nav } from '../components'
 import requests from '../Request'
 import './GenereScreen.css'
 

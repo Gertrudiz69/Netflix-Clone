@@ -1,12 +1,12 @@
 import axios from '../axios';
 import React, { useEffect, useState } from 'react'
 import requests from '../Request';
-import Nav from '../Nav';
-import Rating from '../Rating';
+import { Nav, Rating, Loader } from '../components';
 
 function TvScreen() {
   const [tvSerie, setTvSerie] = useState([])
   const [date, setDate] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const pathname = window.location.pathname;
   const pathnameArr = pathname.split("/");
@@ -31,6 +31,7 @@ function TvScreen() {
         }
       }
       setDate(date())
+      setLoading(false)
       return request
     }
     fetchData()
@@ -39,17 +40,21 @@ function TvScreen() {
   const img_url = "https://image.tmdb.org/t/p/original";
   return (
     <>
-      <Nav />
-      <div className='movieScreen'>
-        <div className='movieScreen__container'>
-          <img src={img_url + tvSerie.poster_path} alt={tvSerie.title} />
-          <div className='movieScreen__details'>
-            <h1>{tvSerie.name} <span>({date})</span></h1>
-            <p>{tvSerie.overview}</p>
-            <Rating ratingNum={(tvSerie.vote_average)/10} />
+      {loading ? <Loader /> : (
+        <>
+          <Nav />
+          <div className='movieScreen'>
+            <div className='movieScreen__container'>
+              <img src={img_url + tvSerie.poster_path} alt={tvSerie.title} />
+              <div className='movieScreen__details'>
+                <h1>{tvSerie.name} <span>({date})</span></h1>
+                <p>{tvSerie.overview}</p>
+                <Rating ratingNum={(tvSerie.vote_average)/10} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   )
 }

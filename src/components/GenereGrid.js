@@ -1,14 +1,15 @@
-import axios from './axios';
+import axios from '../axios';
 import React, { useEffect, useState } from 'react'
 import './GenereGrid.css'
-import requests from './Request';
-import Grid from './Grid';
+import requests from '../Request';
+import { Grid, Loader } from './'
 import { IoIosArrowForward } from 'react-icons/io'
 
 function GenereGrid({ fetchUrl, idUrl }) {
   const [movieBanner, setMovieBanner] = useState([])
   const [movil, setMovil] = useState(false);
   const [genere, setGenere] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const movilBanner = () => {
     const w = window.innerWidth;
@@ -33,6 +34,7 @@ function GenereGrid({ fetchUrl, idUrl }) {
           Math.floor(Math.random() * request.data.results.length - 1)
         ]
       );
+      setLoading(false)
       return request;
     }
     fetchGenere()
@@ -42,27 +44,31 @@ function GenereGrid({ fetchUrl, idUrl }) {
 
   return (
     <>
-      <header
-        className="banner"
-        style={{
-          backgroundSize: `${movil ? "100vw auto" : "cover"}`,
-          backgroundRepeat: "no-repeat",
-          backgroundImage: `url('https://image.tmdb.org/t/p/original${
-            movil ? movieBanner?.poster_path : movieBanner?.backdrop_path
-          }')`,
-          backgroundPosition: `${movil ? 'center top' : 'center center'}`,
-        }}
-      >
-        <div className="banner--fadeBottom" />
-      </header>
-      <div className='genereGrid'>
-        <div className='genereGrid__info'>
-          <span>Péliculas <IoIosArrowForward /></span>
-          <h1 className='genereGrid__title'>{genere.name}</h1>
-        </div>
+      {loading ? <Loader /> : (
+        <>
+          <header
+            className="banner"
+            style={{
+              backgroundSize: `${movil ? "100vw auto" : "cover"}`,
+              backgroundRepeat: "no-repeat",
+              backgroundImage: `url('https://image.tmdb.org/t/p/original${
+                movil ? movieBanner?.poster_path : movieBanner?.backdrop_path
+              }')`,
+              backgroundPosition: `${movil ? 'center top' : 'center center'}`,
+            }}
+          >
+            <div className="banner--fadeBottom" />
+          </header>
+          <div className='genereGrid'>
+            <div className='genereGrid__info'>
+              <span>Péliculas <IoIosArrowForward /></span>
+              <h1 className='genereGrid__title'>{genere.name}</h1>
+            </div>
 
-        <Grid fetchUrl={fetchUrl} />
-      </div>
+            <Grid fetchUrl={fetchUrl} />
+          </div>
+        </>
+      )}
     </>
   )
 }
