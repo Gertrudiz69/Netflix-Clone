@@ -2,6 +2,10 @@
   margin-top: 75px;
 }
 
+.movieScreen::-webkit-scrollbar {
+  overflow-y: hidden;
+}
+
 .movieScreen__container {
   display: flex;
   justify-content: space-around;
@@ -37,4 +41,43 @@
   width: 90%;
   margin: 10px 20px;
   font-size: 18px;
+}
+
+.movieScreen__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 15px;
+}
+
+.cast__carousel {
+  display: flex;
+  height: 350px;
+  width: 700px;
+  overflow-x: scroll;
+}
+
+.cast__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.castCard {
+  padding: 0 20px;
+  height: 250px;
+  text-align: center;
+}
+
+.castCard img {
+  width: 150px;
+}
+
+.castCard h2 {
+  font-size: 16px;
+  color: white;
+}
+
+.castCard span {
+  font-size: 14px;
+  color: darkgrey;
+  height: fit-content;
 }

@@ -12,7 +12,7 @@
 }
 
 .row__posters::-webkit-scrollbar {
-  display: none;
+  visibility: hidden;
 }
 
 .row__poster {
