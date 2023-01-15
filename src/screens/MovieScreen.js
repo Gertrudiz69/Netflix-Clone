@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MovieScreen.css";
 import { Nav, Rating, Loader } from "../components";
 import axios from "../axios";
@@ -8,6 +8,7 @@ function MovieScreen() {
   const [movie, setMovie] = useState([]);
   const [cast, setCast] = useState([]);
   const [date, setDate] = useState([]);
+  // eslint-disable-next-line
   const [dir, setDir] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -43,7 +44,7 @@ function MovieScreen() {
     }
 
     fetchCast();
-  }, []);
+  }, [movieId]);
 
   const img_url = "https://image.tmdb.org/t/p/original";
 

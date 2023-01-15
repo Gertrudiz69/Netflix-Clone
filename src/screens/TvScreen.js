@@ -8,6 +8,7 @@ function TvScreen() {
   const [tvSerie, setTvSerie] = useState([])
   const [date, setDate] = useState([])
   const [cast, setCast] = useState([])
+  // eslint-disable-next-line
   const [dir, setDir] = useState("");
   const [loading, setLoading] = useState(true)
 
@@ -53,7 +54,7 @@ function TvScreen() {
     }
 
     fetchCast();
-  }, []);
+  }, [tvSerieId]);
   
   const img_url = "https://image.tmdb.org/t/p/original";
   return (

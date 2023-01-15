@@ -52,18 +52,25 @@
 
 .cast__carousel {
   display: flex;
-  height: 350px;
+  height: fit-content;
   width: 700px;
+  padding-bottom: 10px;
   overflow-x: scroll;
 }
 
 .cast__carousel::-webkit-scrollbar {
-  display: none;
+  background-color: #111;
+  height: 10px;
+}
+
+.cast__carousel::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 18px;
 }
 
 .castCard {
   padding: 0 20px;
-  height: 250px;
+  height: fit-content;
   text-align: center;
 }
 
