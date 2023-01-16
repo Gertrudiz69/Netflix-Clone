@@ -88,3 +88,33 @@
   color: darkgrey;
   height: fit-content;
 }
+
+.btn--castCrew {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  top: 175px;
+  left: -75px;
+}
+
+.btn--castCrew button {
+  border: none;
+  background-color: gray;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: white;
+  line-height: 1;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.btn--castCrew button:hover {
+  transform: scale(1.1);
+}
+
+.btn--active {
+  background-color: red !important;
+}

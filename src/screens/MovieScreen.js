@@ -6,7 +6,9 @@ import requests from "../Request";
 
 function MovieScreen() {
   const [movie, setMovie] = useState([]);
+  const [toggleCast, setToggleCast] = useState(true);
   const [cast, setCast] = useState([]);
+  const [crew, setCrew] = useState([]);
   const [date, setDate] = useState([]);
   // eslint-disable-next-line
   const [dir, setDir] = useState("");
@@ -35,6 +37,10 @@ function MovieScreen() {
     async function fetchCast() {
       const request = await axios.get("/movie/" + movieId + requests.fetchCast);
       setCast(request.data.cast.filter((cast) => cast.profile_path));
+      const crew = request.data.crew.filter((crew) => crew.profile_path)
+      setCrew(crew.reduce((unique, item) => {
+        return unique.find(i => i.name === item.name) ? unique : [...unique, item];
+      }, []));
       const dirFil = await request.data.crew.filter(
         (dir) => dir.job === "Director"
       );
@@ -45,6 +51,7 @@ function MovieScreen() {
 
     fetchCast();
   }, [movieId]);
+  console.log(crew)
 
   const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -65,19 +72,41 @@ function MovieScreen() {
                 <p>{movie.overview}</p>
                 <div className="movieScreen__info">
                   <Rating ratingNum={movie.vote_average / 10} />
-                  <div className="cast__carousel">
-                    {cast.map((cast) => (
-                      <div className="castCard" key={cast.name}>
-                        <img
-                          loading="lazy"
-                          src={img_url + cast.profile_path}
-                          alt={cast.name}
-                        />
-                        <h2>{cast.name}</h2>
-                        <span>{cast.character}</span>
-                      </div>
-                    ))}
-                  </div>
+                  {crew.length > 0 ? (
+                    <div className="btn--castCrew">
+                      <button className={toggleCast ? 'btn--active' : ''} onClick={() => setToggleCast(true)}>Cast</button>
+                      <button className={!toggleCast ? 'btn--active' : ''} onClick={() => setToggleCast(false)}>Crew</button>
+                    </div>
+                  ): null}
+                  {toggleCast ? (
+                    <div className="cast__carousel">
+                      {cast.map((cast) => (
+                        <div className="castCard" key={cast.name}>
+                          <img
+                            loading="lazy"
+                            src={img_url + cast.profile_path}
+                            alt={cast.name}
+                          />
+                          <h2>{cast.name}</h2>
+                          <span>{cast.character}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="cast__carousel">
+                      {crew.map((crew) => (
+                        <div className="castCard" key={crew.name}>
+                          <img
+                            loading="lazy"
+                            src={img_url + crew.profile_path}
+                            alt={crew.name}
+                          />
+                          <h2>{crew.name}</h2>
+                          <span>{crew.job}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
