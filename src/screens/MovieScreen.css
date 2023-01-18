@@ -48,6 +48,7 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 15px;
+  gap: 15px;
 }
 
 .cast__carousel {
@@ -56,6 +57,7 @@
   width: 700px;
   padding-bottom: 10px;
   overflow-x: scroll;
+  user-select: none;
 }
 
 .cast__carousel::-webkit-scrollbar {
@@ -94,8 +96,8 @@
   flex-direction: column;
   gap: 20px;
   position: relative;
-  top: 175px;
-  left: -75px;
+  top: 0px;
+  left: 0px;
 }
 
 .btn--castCrew button {
@@ -112,9 +114,97 @@
 }
 
 .btn--castCrew button:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .btn--active {
   background-color: red !important;
+}
+
+@media (max-width: 1024px) {
+  .movieScreen {
+    margin-bottom: 50px;
+  }
+
+  .movieScreen__container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .movieScreen__info {
+    gap: 25px;
+  }
+
+  .movieScreen__details {
+    width: 90vw;
+  }
+
+  .cast__carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .castCard img {
+    width: 125px;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .cast__carousel {
+    width: 90vw;
+  }
+
+  .movieScreen__details h1 {
+    font-size: 2rem;
+  }
+
+  .movieScreen__container {
+    width: 100%;
+  }
+
+  .movieScreen__details p {
+    margin-left: 0;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .btn--castCrew {
+    flex-direction: row;
+  }
+
+  .movieScreen__info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .cast__carousel {
+    width: 90vw;
+  }
+
+  .movieScreen__details h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .movieScreen__container>img {
+    width: 250px;
+  }
+
+  .movieScreen__details h1 {
+    font-size: 1.4rem;
+  }
+
+  .movieScreen__details h1 span {
+    font-size: 12px;
+  }
+
+  .movieScreen__container {
+    width: 100vw;
+  }
 }

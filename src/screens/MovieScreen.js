@@ -37,10 +37,14 @@ function MovieScreen() {
     async function fetchCast() {
       const request = await axios.get("/movie/" + movieId + requests.fetchCast);
       setCast(request.data.cast.filter((cast) => cast.profile_path));
-      const crew = request.data.crew.filter((crew) => crew.profile_path)
-      setCrew(crew.reduce((unique, item) => {
-        return unique.find(i => i.name === item.name) ? unique : [...unique, item];
-      }, []));
+      const crew = request.data.crew.filter((crew) => crew.profile_path);
+      setCrew(
+        crew.reduce((unique, item) => {
+          return unique.find((i) => i.name === item.name)
+            ? unique
+            : [...unique, item];
+        }, [])
+      );
       const dirFil = await request.data.crew.filter(
         (dir) => dir.job === "Director"
       );
@@ -51,7 +55,7 @@ function MovieScreen() {
 
     fetchCast();
   }, [movieId]);
-  console.log(crew)
+  console.log(crew);
 
   const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -74,10 +78,20 @@ function MovieScreen() {
                   <Rating ratingNum={movie.vote_average / 10} />
                   {crew.length > 0 ? (
                     <div className="btn--castCrew">
-                      <button className={toggleCast ? 'btn--active' : ''} onClick={() => setToggleCast(true)}>Cast</button>
-                      <button className={!toggleCast ? 'btn--active' : ''} onClick={() => setToggleCast(false)}>Crew</button>
+                      <button
+                        className={toggleCast ? "btn--active" : ""}
+                        onClick={() => setToggleCast(true)}
+                      >
+                        Cast
+                      </button>
+                      <button
+                        className={!toggleCast ? "btn--active" : ""}
+                        onClick={() => setToggleCast(false)}
+                      >
+                        Crew
+                      </button>
                     </div>
-                  ): null}
+                  ) : null}
                   {toggleCast ? (
                     <div className="cast__carousel">
                       {cast.map((cast) => (

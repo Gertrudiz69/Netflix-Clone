@@ -4,3 +4,92 @@
   align-items: flex-start;
   margin-top: 15px;
 }
+
+
+@media (max-width: 1024px) {
+  .tvScreen {
+    margin-bottom: 50px;
+  }
+
+  .tvScreen__container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .tvScreen__info {
+    gap: 25px;
+  }
+
+  .tvScreen__details {
+    width: 90vw;
+  }
+
+  .cast__carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .castCard img {
+    width: 125px;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .cast__carousel {
+    width: 90vw;
+  }
+
+  .tvScreen__details h1 {
+    font-size: 2rem;
+  }
+
+  .tvScreen__container {
+    width: 100%;
+  }
+
+  .tvScreen__details p {
+    margin-left: 0;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .btn--castCrew {
+    flex-direction: row;
+  }
+
+  .tvScreen__info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .cast__carousel {
+    width: 90vw;
+  }
+
+  .tvScreen__details h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .tvScreen__container>img {
+    width: 250px;
+  }
+
+  .tvScreen__details h1 {
+    font-size: 1.4rem;
+  }
+
+  .tvScreen__details h1 span {
+    font-size: 12px;
+  }
+
+  .tvScreen__container {
+    width: 100vw;
+  }
+}

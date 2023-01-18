@@ -1,6 +1,5 @@
 .rating {
   width: 120px;
-  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,4 +15,22 @@
 .rating__num span {
   font-size: small;
   vertical-align: super;
+}
+
+@media (max-width: 768px) {
+  .rating__num {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rating svg {
+    width: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .rating svg {
+    width: 100px;
+  }
 }

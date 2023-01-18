@@ -10,6 +10,7 @@ function Loader() {
       speed={1.75} 
       color="white" 
       />
+      Cargando...
     </div>
   )
 }
