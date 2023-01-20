@@ -98,6 +98,13 @@
   animation: rotate 0.2s linear forwards;
 }
 
+.nav__search {
+  position: absolute;
+  right: 60px;
+  color: white;
+  font-size: 26px;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);

@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-d
 import "./App.css";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
-import { GenereScreen, HomeScreen, LoginScreen, MovieScreen, ProfileScreen, TvScreen } from './screens'
+import { GenereScreen, HomeScreen, LoginScreen, MovieScreen, ProfileScreen, SearchScreen, TvScreen } from './screens'
 
 function App() {
   const user = useSelector(selectUser);
@@ -37,6 +37,7 @@ function App() {
             <Route exact path="/movies/genere/:id" element={<GenereScreen />} />
             <Route exact path="/movie/:id" element={<MovieScreen />} />
             <Route exact path="/tv/:id" element={<TvScreen />} />
+            <Route exact path='/search' element={<SearchScreen />} />
             <Route path="*" element={<Navigate to={'/'} />} />
           </Routes>
         )}

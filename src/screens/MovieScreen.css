@@ -45,7 +45,7 @@
 
 .movieScreen__info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: flex-start;
   margin-top: 15px;
   gap: 15px;
@@ -54,7 +54,7 @@
 .cast__carousel {
   display: flex;
   height: fit-content;
-  width: 700px;
+  max-width: 50vw;
   padding-bottom: 10px;
   overflow-x: scroll;
   user-select: none;

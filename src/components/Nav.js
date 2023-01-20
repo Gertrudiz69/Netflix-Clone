@@ -4,6 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import "./Nav.css";
 import axios from "../axios";
 import requests from "../Request";
+import { BiSearchAlt } from "react-icons/bi";
 
 function Nav({ isProfile }) {
   const [show, setShow] = useState(false)
@@ -57,6 +58,9 @@ function Nav({ isProfile }) {
             </div>
           </div>)}
         </div>
+        <Link to='/search' className="nav__search">
+          <BiSearchAlt />
+        </Link>
         <img
           className="nav__avatar"
           src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"

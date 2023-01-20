@@ -26,7 +26,8 @@ const requests = {
   fetchWesternMovies: `/discover/movie?api_key=${API_KEY}&with_generes=37&language=es-MX`,
   fetchGenereMovies: `/genre/movie/list?api_key=${API_KEY}&language=es-MX`,
   fetchByID : `?api_key=${API_KEY}&language=es-MX`,
-  fetchCast: `/credits?api_key=${API_KEY}&language=es-MX`
+  fetchCast: `/credits?api_key=${API_KEY}&language=es-MX`,
+  fetchSearch: `/search/multi?api_key=${API_KEY}&language=es-MX&include_adult=false`
 };
 
 export default requests;
