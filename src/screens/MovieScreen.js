@@ -3,6 +3,7 @@ import "./MovieScreen.css";
 import { Nav, Rating, Loader } from "../components";
 import axios from "../axios";
 import requests from "../Request";
+import { Link } from "react-router-dom";
 
 function MovieScreen() {
   const [movie, setMovie] = useState([]);
@@ -55,7 +56,6 @@ function MovieScreen() {
 
     fetchCast();
   }, [movieId]);
-  console.log(crew);
 
   const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -66,13 +66,27 @@ function MovieScreen() {
       ) : (
         <>
           <Nav />
-          <div className="movieScreen">
+          <div className="movieScreen" style={{
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path
+                }')`,
+                backgroundPosition: "center center",
+              }}>
+            <div className="movieScreen__overlay"/> 
             <div className="movieScreen__container">
               <img src={img_url + movie.poster_path} alt={movie.title} />
               <div className="movieScreen__details">
                 <h1>
                   {movie.title} <span>({date})</span>
                 </h1>
+                <div className="movieScreen__genres">
+                  {movie.genres?.map(type => (
+                    <Link key={type.name} to={`/movies/genere/${type.id}`}>
+                      <span className="genre">{type.name}</span>
+                    </Link>
+                  ))}
+                </div>
                 <p>{movie.overview}</p>
                 <div className="movieScreen__info">
                   <Rating ratingNum={movie.vote_average / 10} />
@@ -124,7 +138,9 @@ function MovieScreen() {
                 </div>
               </div>
             </div>
+            <div className="banner--fadeBottom" />
           </div>
+          <h1>hola</h1>
         </>
       )}
     </>

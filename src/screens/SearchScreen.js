@@ -26,11 +26,7 @@ const SearchScreen = () => {
       const request = await axios.get(requests.fetchSearch + `&query=${searchTerm}&page=${offset}`)
       const filterRes = request.data.results.filter((item) => (item.media_type === 'tv' || item.media_type === 'movie') && item.poster_path)
       setSearchRes(filterRes)
-      if(filterRes.lenght < 20){
-        setLoadMore(false)
-      } else {
-        setLoadMore(true)
-      }
+      setLoadMore(true)
       return request
     } catch(error) {
       console.error(error);
@@ -44,6 +40,11 @@ const SearchScreen = () => {
       const filterRes = request.data.results.filter((item) => (item.media_type === 'tv'  || item.media_type === 'movie') && item.poster_path)
       const uniqueResults = filterRes.filter(result => !searchRes.some(prevResult => prevResult.id === result.id))
       setSearchRes([...searchRes, ...uniqueResults])
+      if(filterRes.length < 20){
+        setLoadMore(false)
+      } else {
+        setLoadMore(true)
+      }
       return request
     } catch(error) {
       console.error(error);

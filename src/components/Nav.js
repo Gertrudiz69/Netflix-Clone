@@ -8,7 +8,8 @@ import { BiSearchAlt } from "react-icons/bi";
 
 function Nav({ isProfile }) {
   const [show, setShow] = useState(false)
-  const [genere, setGenere] = useState([])
+  const [genereMovie, setGenereMovie] = useState([])
+  const [genereSerie, setGenereSerie] = useState([])
 
   const navigate = useNavigate()
   const transitionNavBar = () => {
@@ -22,15 +23,23 @@ function Nav({ isProfile }) {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchGenereMovies);
-      setGenere(request.data.genres);
+      setGenereMovie(request.data.genres);
       return request;
     }   
+
+    async function fetchSerie() {
+      const request = await axios.get(requests.fetchGenereSerie)
+      setGenereSerie(request.data.genres)
+      return request
+    }
     
     window.addEventListener('scroll', transitionNavBar)
     
+    fetchSerie()
     fetchData()
   }, [])
 
+  console.log(requests.fetchGenereSerie);
 
   return (
     <div className={`nav ${show && 'nav__black'}`}>
@@ -50,8 +59,17 @@ function Nav({ isProfile }) {
             <div className="nav__dropdown">
               <button className="nav__dropdownButton">Géneros <IoIosArrowForward /></button>
               <div className="nav__dropdownLinks">
-                {genere.map(type => (
+                {genereMovie.map(type => (
                     <a href={`/movies/genere/${type.id}`} key={type.id}>{type.name}</a>
+                  )
+                )}
+              </div>
+            </div>
+            <div className="nav__dropdown">
+              <button className="nav__dropdownButton">Series <IoIosArrowForward /></button>
+              <div className="nav__dropdownLinks">
+                {genereSerie.map(type => (
+                    <a href={`/tv/genere/${type.id}`} key={type.id}>{type.name}</a>
                   )
                 )}
               </div>

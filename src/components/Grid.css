@@ -10,6 +10,10 @@
   user-select: none;
 }
 
+.grid>button {
+  margin: auto;
+}
+
 .grid__component {
   display: flex;
   flex-direction: column;
@@ -19,6 +23,7 @@
 
 .grid__component img {
   width: 300px;
+  cursor: pointer;
 }
 
 .grid__details {
@@ -28,11 +33,6 @@
 .grid__component:hover {
   transform: scale(1.1);
   transition: all 0.5s;
-}
-
-.grid__component:hover img {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 .grid__component:hover .grid__details {

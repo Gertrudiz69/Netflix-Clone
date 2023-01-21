@@ -55,6 +55,12 @@
   color: white;
 }
 
+
+.nav__dropdown:nth-child(3) {
+  position: absolute;
+  left: 310px;
+}
+
 .nav__dropdownButton {
   display: flex;
   align-items: center;
@@ -69,13 +75,13 @@
 
 .nav__dropdownLinks {
   margin-top: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
   gap: 5px 5px;
   display: none;
   background-color: #111;
   border-radius: 8px;
+  width: fit-content;
 }
 
 .nav__dropdownLinks>a {

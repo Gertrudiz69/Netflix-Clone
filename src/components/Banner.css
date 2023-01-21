@@ -41,7 +41,8 @@
       rgba(37, 37, 37, 0.61),
       #111);
   position: absolute;
-  top: calc(100vh - 7.3rem);
+  pointer-events: none;
+  bottom: 0px;
   left: 0;
 }
 
@@ -93,10 +94,6 @@
 
   .banner {
     height: 68vh;
-  }
-
-  .banner--fadeBottom {
-    top: calc(68vh - 7.3rem);
   }
 }
 
