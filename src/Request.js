@@ -29,6 +29,7 @@ const requests = {
   fetchByID : `?api_key=${API_KEY}&language=es-MX`,
   fetchCast: `/credits?api_key=${API_KEY}&language=es-MX`,
   fetchSearch: `/search/multi?api_key=${API_KEY}&language=es-MX&include_adult=false`,
+  fetchRecomended: `/recommendations?api_key=${API_KEY}&language=es-MX&page=1`
 };
 
 export default requests;

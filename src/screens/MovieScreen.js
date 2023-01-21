@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MovieScreen.css";
-import { Nav, Rating, Loader } from "../components";
+import { Nav, Rating, Loader, Row } from "../components";
 import axios from "../axios";
 import requests from "../Request";
 import { Link } from "react-router-dom";
@@ -58,6 +58,8 @@ function MovieScreen() {
   }, [movieId]);
 
   const img_url = "https://image.tmdb.org/t/p/original";
+
+  const fetchUrl = `/movie/${movie.id}/${requests.fetchRecomended}`
 
   return (
     <>
@@ -140,7 +142,14 @@ function MovieScreen() {
             </div>
             <div className="banner--fadeBottom" />
           </div>
-          <h1>hola</h1>
+          <Row 
+            title='Recomendadas'
+            id = 'recomendadas'
+            idArrowR='arrowRecomendadasR'
+            idArrowL='arrowRecomendadasL'
+            fetchUrl={fetchUrl}
+            isLargeRow
+          />
         </>
       )}
     </>

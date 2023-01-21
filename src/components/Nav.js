@@ -39,8 +39,6 @@ function Nav({ isProfile }) {
     fetchData()
   }, [])
 
-  console.log(requests.fetchGenereSerie);
-
   return (
     <div className={`nav ${show && 'nav__black'}`}>
       <div className="nav__contents">

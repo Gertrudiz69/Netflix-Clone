@@ -4,6 +4,7 @@
   position: relative;
   top: 0;
   left: 0;
+  margin-bottom: 100px;
 }
 
 .movieScreen::-webkit-scrollbar {
