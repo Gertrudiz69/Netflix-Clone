@@ -1,11 +1,10 @@
 import axios from '../axios';
 import React, { useEffect, useState } from 'react'
 import './GenereGrid.css'
-import requests from '../Request';
 import { Grid, Loader } from './'
 import { IoIosArrowForward } from 'react-icons/io'
 
-function GenereGrid({ fetchUrl, idUrl }) {
+function GenereGrid({ fetchUrl, idUrl, fetchGenre, media }) {
   const [movieBanner, setMovieBanner] = useState([])
   const [movil, setMovil] = useState(false);
   const [genere, setGenere] = useState([])
@@ -23,7 +22,7 @@ function GenereGrid({ fetchUrl, idUrl }) {
   
   useEffect(() => {
     async function fetchGenere() {
-      const request = await axios.get(requests.fetchGenereMovies);
+      const request = await axios.get(fetchGenre);
       setGenere(request.data.genres.find(genere => genere.id === idUrl))
       return request
     }
@@ -65,7 +64,7 @@ function GenereGrid({ fetchUrl, idUrl }) {
               <h1 className='genereGrid__title'>{genere.name}</h1>
             </div>
 
-            <Grid fetchUrl={fetchUrl} />
+            <Grid fetchUrl={fetchUrl} media={media} />
           </div>
         </>
       )}

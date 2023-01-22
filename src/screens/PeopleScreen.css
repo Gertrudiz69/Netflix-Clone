@@ -1,0 +1,25 @@
+.movieScreen__details>h2 {
+  color: white;
+  width: fit-content;
+  margin-top: 10px;
+  font-size: 30px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background-color: #e5091480;
+}
+
+.peopleScreen__bio {
+  max-height: 300px;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+
+.peopleScreen__bio::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+.peopleScreen__bio::-webkit-scrollbar-thumb {
+  background-color: #e50914;
+  border-radius: 10px;
+}

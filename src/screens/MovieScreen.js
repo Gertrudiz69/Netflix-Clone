@@ -21,7 +21,9 @@ function MovieScreen() {
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get("/movie/" + movieId + requests.fetchByID);
+      const request = await axios.get(
+        "/movie/" + movieId + requests.fetchByID + "&language=es-MX"
+      );
       setMovie(request.data);
       const dateMovie = request.data.release_date;
       const dateMovieArr = dateMovie.split("-");
@@ -32,7 +34,7 @@ function MovieScreen() {
     }
 
     fetchData();
-  }, [movieId]);
+  }, [movieId, pathname]);
 
   useEffect(() => {
     async function fetchCast() {
@@ -55,11 +57,11 @@ function MovieScreen() {
     }
 
     fetchCast();
-  }, [movieId]);
+  }, [movieId, pathname]);
 
   const img_url = "https://image.tmdb.org/t/p/original";
 
-  const fetchUrl = `/movie/${movie.id}/${requests.fetchRecomended}`
+  const fetchUrl = `/movie/${movie.id}/${requests.fetchRecomended}`;
 
   return (
     <>
@@ -68,14 +70,16 @@ function MovieScreen() {
       ) : (
         <>
           <Nav />
-          <div className="movieScreen" style={{
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path
-                }')`,
-                backgroundPosition: "center center",
-              }}>
-            <div className="movieScreen__overlay"/> 
+          <div
+            className="movieScreen"
+            style={{
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path}')`,
+              backgroundPosition: "center center",
+            }}
+          >
+            <div className="movieScreen__overlay" />
             <div className="movieScreen__container">
               <img src={img_url + movie.poster_path} alt={movie.title} />
               <div className="movieScreen__details">
@@ -83,7 +87,7 @@ function MovieScreen() {
                   {movie.title} <span>({date})</span>
                 </h1>
                 <div className="movieScreen__genres">
-                  {movie.genres?.map(type => (
+                  {movie.genres?.map((type) => (
                     <Link key={type.name} to={`/movies/genere/${type.id}`}>
                       <span className="genre">{type.name}</span>
                     </Link>
@@ -112,13 +116,15 @@ function MovieScreen() {
                     <div className="cast__carousel">
                       {cast.map((cast) => (
                         <div className="castCard" key={cast.name}>
-                          <img
-                            loading="lazy"
-                            src={img_url + cast.profile_path}
-                            alt={cast.name}
-                          />
-                          <h2>{cast.name}</h2>
-                          <span>{cast.character}</span>
+                          <Link to={`/people/${cast.id}`}>
+                            <img
+                              loading="lazy"
+                              src={img_url + cast.profile_path}
+                              alt={cast.name}
+                            />
+                            <h2>{cast.name}</h2>
+                            <span>{cast.character}</span>
+                          </Link>
                         </div>
                       ))}
                     </div>
@@ -126,13 +132,15 @@ function MovieScreen() {
                     <div className="cast__carousel">
                       {crew.map((crew) => (
                         <div className="castCard" key={crew.name}>
-                          <img
-                            loading="lazy"
-                            src={img_url + crew.profile_path}
-                            alt={crew.name}
-                          />
-                          <h2>{crew.name}</h2>
-                          <span>{crew.job}</span>
+                          <Link to={`/people/${crew.id}`}>
+                            <img
+                              loading="lazy"
+                              src={img_url + crew.profile_path}
+                              alt={crew.name}
+                            />
+                            <h2>{crew.name}</h2>
+                            <span>{crew.job}</span>
+                          </Link>
                         </div>
                       ))}
                     </div>
@@ -142,11 +150,11 @@ function MovieScreen() {
             </div>
             <div className="banner--fadeBottom" />
           </div>
-          <Row 
-            title='Recomendadas'
-            id = 'recomendadas'
-            idArrowR='arrowRecomendadasR'
-            idArrowL='arrowRecomendadasL'
+          <Row
+            title="Recomendadas"
+            id="recomendadas"
+            idArrowR="arrowRecomendadasR"
+            idArrowL="arrowRecomendadasL"
             fetchUrl={fetchUrl}
             isLargeRow
           />

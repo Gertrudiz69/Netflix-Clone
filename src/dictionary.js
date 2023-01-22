@@ -1,4 +1,4 @@
-export const genres = {
+export const moviesGenres = {
   28: "Acción",
   99: "Documental",
   27: "Terror",
@@ -18,4 +18,23 @@ export const genres = {
   80: "Crimen",
   36: "Historia",
   878: "Ciencia ficción",
+};
+
+export const tvGenres = {
+  10759: "Action & Adventure",
+  16: "Animación",
+  35: "Comedia",
+  80: "Crimen",
+  99: "Documental",
+  18: "Drama",
+  10751: "Familia",
+  10762: "Kids",
+  9648: "Misterio",
+  10763: "News",
+  10764: "Reality",
+  10765: "Sci-Fi & Fantasy",
+  10766: "Soap",
+  10767: "Talk",
+  10768: "War & Politics",
+  37: "Western",
 };

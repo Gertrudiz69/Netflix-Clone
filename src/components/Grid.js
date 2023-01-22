@@ -4,12 +4,21 @@ import "./Grid.css";
 import { BiInfoCircle } from 'react-icons/bi'
 import { Link, useNavigate } from "react-router-dom";
 
-function Grid({ fetchUrl }) {
+function Grid({ fetchUrl, media }) {
   const [movieGrid, setMovieGrid] = useState([]);
   const [movil, setMovil] = useState(false);
   const [offset, setOffset] = useState(1)
+  const [mediaType, setMediaType] = useState()
 
   const navigate = useNavigate()
+
+  const genreType = () => {
+    if(media === 'tv') {
+      setMediaType(true)
+    } else {
+      setMediaType(false)
+    }
+  }
 
   const movilBanner = () => {
     const w = window.innerWidth;
@@ -27,10 +36,14 @@ function Grid({ fetchUrl }) {
       setMovieGrid(request.data.results.filter(movie => movie.backdrop_path && movie.poster_path));
       return request;
     }
+
+    genreType()
     movilBanner();
     fetchData();
     // eslint-disable-next-line
   }, [fetchUrl]);
+
+  console.log(movieGrid);
 
   const handleNextPage = async () => {
     try {
@@ -63,12 +76,12 @@ function Grid({ fetchUrl }) {
                   : img_url + movie?.backdrop_path
               }
               alt={movie.title}
-              onClick={() => navigate(`/movie/${movie.id}`)}
+              onClick={() => navigate(mediaType ? `/tv/${movie.id}` :`/movie/${movie.id}`)}
             />
             {movil ? null : (
               <div className="grid__details">
-                <h1>{truncate(movie.title, 35)}</h1>
-                <Link to={`/movie/${movie.id}`} ><BiInfoCircle /></Link>
+                <h1>{truncate((movie?.title, movie?.name), 35)}</h1>
+                <Link to={mediaType ? `/tv/${movie.id}` : `/movie/${movie.id}`} ><BiInfoCircle /></Link>
               </div>
             )}
           </div>

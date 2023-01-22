@@ -5,8 +5,21 @@ import './GenereScreen.css'
 
 function GenereScreen() {
   var winLocPath = window.location.pathname
+  var genreUrl = ''
+  var media = ''
   var Url = ''
   var id = 0
+
+  const pathnameArr = winLocPath.split('/')
+  const mediaType = pathnameArr[1] 
+
+  if(mediaType === 'tv') {
+    genreUrl = requests.fetchGenereSerie
+    media = 'tv'
+  } else {
+    genreUrl = requests.fetchGenereMovies
+    media = 'movie'
+  }
 
   const urlFetch = () => {
     switch (winLocPath) {
@@ -86,6 +99,70 @@ function GenereScreen() {
         Url = requests.fetchScienceFictionMovies
         id = 878
         break
+      case '/tv/genere/10759':
+        Url = requests.fetchActionTv
+        id = 10759
+        break
+      case '/tv/genere/16':
+        Url = requests.fetchAnimationTv
+        id = 16
+        break
+      case '/tv/genere/35':
+        Url = requests.fetchComedyTv
+        id = 35
+        break
+      case '/tv/genere/80':
+        Url = requests.fetchCrimeTv
+        id = 80
+        break
+      case '/tv/genere/99':
+        Url = requests.fetchDocumentariesTv
+        id = 99
+        break
+      case '/tv/genere/18':
+        Url = requests.fetchDramaTv
+        id = 18
+        break
+      case '/tv/genere/10751':
+        Url = requests.fetchFamilyTv
+        id = 10751
+        break
+      case '/tv/genere/10762':
+        Url = requests.fetchKidsTv
+        id = 10762
+        break
+      case '/tv/genere/9648':
+        Url = requests.fetchMysteryTv
+        id = 9648
+        break
+      case '/tv/genere/10763':
+        Url = requests.fetchNewsTv
+        id = 10763
+        break
+      case '/tv/genere/10764':
+        Url = requests.fetchRealityTv
+        id = 10764
+        break
+      case '/tv/genere/10765':
+        Url = requests.fetchSciFiTv
+        id = 10765
+        break
+      case '/tv/genere/10766':
+        Url = requests.fetchSoapTv
+        id = 10766
+        break
+      case '/tv/genere/10767':
+        Url = requests.fetchTalkTv
+        id = 10767
+        break
+      case '/tv/genere/10768':
+        Url = requests.fetchWarTv
+        id = 10768
+        break
+      case '/tv/genere/37':
+        Url = requests.fetchWesternTv
+        id = 37
+        break
       default:
         Url = ''
         break
@@ -97,7 +174,7 @@ function GenereScreen() {
     <>
       <Nav />
 
-      <GenereGrid fetchUrl={Url} idUrl={id}/>
+      <GenereGrid fetchUrl={Url} idUrl={id} fetchGenre={genreUrl} media={media}/>
     </>
   )
 }

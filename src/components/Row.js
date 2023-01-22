@@ -2,7 +2,6 @@ import axios from "../axios";
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import "./Row.css";
-import { useNavigate } from "react-router-dom";
 
 const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTvSeries}) => {
   const [movies, setMovies] = useState([]);
@@ -10,7 +9,6 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTv
   const [displayArrR, setDisplayArrR] = useState(true)
   const [movil, setMovil] = useState(false);
   const row = useRef(null)
-  const navigate = useNavigate()
 
   const movilBanner = () => {
     const w = window.innerWidth;
@@ -86,9 +84,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTv
     movilBanner()
     fetchData();
   }, [fetchUrl]);
-
-  console.log(movies);
-
+  
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -111,11 +107,11 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTv
                 loading='lazy'
                 onClick={() => {
                   if(isTvSeries === true || movie?.media_type === 'tv') {
-                    navigate(`/tv/${movie.id}`)
-                } else {
-                  navigate(`/movie/${movie.id}`)
-                }
-              }}
+                    window.location.replace(`/tv/${movie.id}`)
+                  } else {
+                    window.location.replace(`/movie/${movie.id}`)
+                  }
+                }}
               />
             )
         )}
