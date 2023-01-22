@@ -1,12 +1,13 @@
 import axios from '../axios';
 import React, { useEffect, useState } from 'react'
-import { Loader, Nav, Row } from '../components'
+import { Loader, Nav } from '../components'
 import requests from '../Request';
 import './PeopleScreen.css'
 
 function PeopleScreen() {
 
   const [people, setPeople] = useState([])
+  // eslint-disable-next-line
   const [proyects, setProyects] = useState([])
   const [loading, setLoading] = useState(true)
 

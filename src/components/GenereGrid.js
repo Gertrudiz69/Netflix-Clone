@@ -39,7 +39,7 @@ function GenereGrid({ fetchUrl, idUrl, fetchGenre, media }) {
     fetchGenere()
     movilBanner();
     fetchData();
-  }, [fetchUrl, idUrl]);
+  }, [fetchGenre, idUrl, fetchUrl]);
 
   return (
     <>
