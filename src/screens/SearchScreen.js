@@ -8,12 +8,11 @@ import { useNavigate } from 'react-router-dom'
 
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [offset, setOffset] = useState(1)
+  const [offset, setOffset] = useState(2)
   const [loadMore, setLoadMore] = useState(false)
   const [searchRes, setSearchRes] = useState([])
 
   const navigate = useNavigate()
-
 
   function handleChange(e) {
     setSearchTerm(e.target.value);
@@ -21,9 +20,8 @@ const SearchScreen = () => {
   
   async function handleSubmit(e) {
     e.preventDefault();
-    setOffset(1)
     try {
-      const request = await axios.get(requests.fetchSearch + `&query=${searchTerm}&page=${offset}`)
+      const request = await axios.get(requests.fetchSearch + `&query=${searchTerm}`)
       const filterRes = request.data.results.filter((item) => (item.media_type === 'tv' || item.media_type === 'movie') && item.poster_path)
       setSearchRes(filterRes)
       setLoadMore(true)
@@ -35,12 +33,12 @@ const SearchScreen = () => {
 
   const handleNextPage = async () => {
     try {
-      setOffset(offset + 1 );
+      setOffset(offset => offset + 1 );
       const request = await axios.get(requests.fetchSearch + `&query=${searchTerm}&page=${offset}`)
       const filterRes = request.data.results.filter((item) => (item.media_type === 'tv'  || item.media_type === 'movie') && item.poster_path)
       const uniqueResults = filterRes.filter(result => !searchRes.some(prevResult => prevResult.id === result.id))
       setSearchRes([...searchRes, ...uniqueResults])
-      if(filterRes.length < 20){
+      if(filterRes.length < 10){
         setLoadMore(false)
       } else {
         setLoadMore(true)

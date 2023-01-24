@@ -5,11 +5,23 @@ import "./Nav.css";
 import axios from "../axios";
 import requests from "../Request";
 import { BiSearchAlt } from "react-icons/bi";
+import OffCanvas from "./OffCanvas";
 
 function Nav({ isProfile }) {
   const [show, setShow] = useState(false)
   const [genereMovie, setGenereMovie] = useState([])
   const [genereSerie, setGenereSerie] = useState([])
+  const [movil, setMovil] = useState(false);
+
+  const movilBanner = () => {
+    const w = window.innerWidth;
+
+    if (w < 768) {
+      setMovil(true);
+    } else {
+      setMovil(false);
+    }
+  };
 
   const navigate = useNavigate()
   const transitionNavBar = () => {
@@ -34,13 +46,14 @@ function Nav({ isProfile }) {
     }
     
     window.addEventListener('scroll', transitionNavBar)
-    
+
+    movilBanner()    
     fetchSerie()
     fetchData()
   }, [])
 
   return (
-    <div className={`nav ${show && 'nav__black'}`}>
+    <div className={`navbar ${show && 'nav__black'}`}>
       <div className="nav__contents">
         <div className="nav__details">
           <img
@@ -52,7 +65,7 @@ function Nav({ isProfile }) {
               navigate('/')
             }}
           />
-          {isProfile ? null : (<div className="nav__links">
+          {isProfile || movil ? null : (<div className="nav__links">
             <Link onClick={() => window.scrollTo(0,0)}>Inicio</Link>
             <div className="nav__dropdown">
               <button className="nav__dropdownButton">Géneros <IoIosArrowForward /></button>
@@ -74,9 +87,12 @@ function Nav({ isProfile }) {
             </div>
           </div>)}
         </div>
+        {movil && !isProfile ? <OffCanvas movie={genereMovie} tv={genereSerie}/> : null}
+        {isProfile ? null : (
         <Link to='/search' className="nav__search">
           <BiSearchAlt />
         </Link>
+        )}
         <img
           className="nav__avatar"
           src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"

@@ -10,6 +10,14 @@ function GenereGrid({ fetchUrl, idUrl, fetchGenre, media }) {
   const [genere, setGenere] = useState([])
   const [loading, setLoading] = useState(true)
 
+  var med = ''
+  
+  if(media === 'tv') {
+    med = 'Series'
+  } else {
+    med = 'Péliculas'
+  }
+
   const movilBanner = () => {
     const w = window.innerWidth;
 
@@ -60,7 +68,7 @@ function GenereGrid({ fetchUrl, idUrl, fetchGenre, media }) {
           </header>
           <div className='genereGrid'>
             <div className='genereGrid__info'>
-              <span>Péliculas <IoIosArrowForward /></span>
+              <span>{med} <IoIosArrowForward /></span>
               <h1 className='genereGrid__title'>{genere.name}</h1>
             </div>
 

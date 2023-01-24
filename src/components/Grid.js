@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Grid({ fetchUrl, media }) {
   const [movieGrid, setMovieGrid] = useState([]);
   const [movil, setMovil] = useState(false);
-  const [offset, setOffset] = useState(1)
+  const [offset, setOffset] = useState(2)
   const [mediaType, setMediaType] = useState()
 
   const navigate = useNavigate()
@@ -32,7 +32,7 @@ function Grid({ fetchUrl, media }) {
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(fetchUrl + `&page=${offset}`);
+      const request = await axios.get(fetchUrl);
       setMovieGrid(request.data.results.filter(movie => movie.backdrop_path && movie.poster_path));
       return request;
     }
@@ -47,7 +47,7 @@ function Grid({ fetchUrl, media }) {
 
   const handleNextPage = async () => {
     try {
-      setOffset(offset + 1)
+      setOffset(offset => offset + 1)
       const request = await axios.get(fetchUrl + `&page=${offset}`)
       const results = request.data.results
       const uniqueResults = results.filter(result => !movieGrid.some(prevResult => prevResult.id === result.id))
@@ -75,12 +75,12 @@ function Grid({ fetchUrl, media }) {
                   ? img_url + movie?.poster_path
                   : img_url + movie?.backdrop_path
               }
-              alt={movie.title}
+              alt={mediaType ? movie?.name : movie?.title}
               onClick={() => navigate(mediaType ? `/tv/${movie.id}` :`/movie/${movie.id}`)}
             />
             {movil ? null : (
               <div className="grid__details">
-                <h1>{truncate((movie?.title, movie?.name), 35)}</h1>
+                <h1>{truncate((mediaType ? movie?.name : movie?.title), 35)}</h1>
                 <Link to={mediaType ? `/tv/${movie.id}` : `/movie/${movie.id}`} ><BiInfoCircle /></Link>
               </div>
             )}

@@ -23,7 +23,7 @@ function TvScreen() {
     async function fetchData() {
       const request = await axios.get(
         "/tv/" + tvSerieId + requests.fetchByID + "&language=es-MX"
-      );
+      )
       setTvSerie(request.data);
       const dateTvSerieFirst = request.data.first_air_date;
       const dateTvSerieLast = request.data.last_air_date;
@@ -44,7 +44,7 @@ function TvScreen() {
     }
 
     fetchData();
-  }, [tvSerieId]);
+  }, [tvSerieId, tvSerie]);
 
   useEffect(() => {
     async function fetchCast() {
@@ -67,7 +67,7 @@ function TvScreen() {
     }
 
     fetchCast();
-  }, [tvSerieId]);
+  }, [tvSerieId, cast, crew, tvSerie]);
 
   const img_url = "https://image.tmdb.org/t/p/original";
 

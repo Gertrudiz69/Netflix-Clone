@@ -1,4 +1,4 @@
-.nav {
+.navbar {
   position: fixed;
   top: 0;
   padding: 10px;
@@ -111,6 +111,11 @@
   font-size: 26px;
 }
 
+.nav__search svg {
+  vertical-align: top !important;
+}
+
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -141,6 +146,7 @@
 }
 
 @media (max-width: 450px) {
+
   .nav__dropdownLinks {
     left: 30px;
   }
