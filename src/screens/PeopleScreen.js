@@ -34,8 +34,6 @@ function PeopleScreen() {
     fetchPeople()
   }, [peopleId])
 
-  console.log(people);
-
   const img_url = "https://image.tmdb.org/t/p/original";
 
   return (

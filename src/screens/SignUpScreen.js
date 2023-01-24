@@ -94,7 +94,6 @@ function SignUpScreen() {
 
   const errorAlert = (error) => {
     
-    console.log(error.code);
     errAlert.current.style.display= 'block'
 
     const errorMessages = {

@@ -43,8 +43,6 @@ function Grid({ fetchUrl, media }) {
     // eslint-disable-next-line
   }, [fetchUrl]);
 
-  console.log(movieGrid);
-
   const handleNextPage = async () => {
     try {
       setOffset(offset => offset + 1)
