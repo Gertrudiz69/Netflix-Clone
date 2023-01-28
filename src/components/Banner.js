@@ -23,7 +23,7 @@ function Banner() {
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOriginals);
       setMovie(
-        request.data.results.filter(movie => movie.backdrop_path && movie.poster_path)[
+        request.data.results.filter(movie => movie?.backdrop_path && movie?.poster_path)[
           Math.floor(Math.random() * request.data.results.length - 1)
         ]
       );

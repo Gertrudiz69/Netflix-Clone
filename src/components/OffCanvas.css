@@ -22,7 +22,7 @@
   background-color: #111;
   background-clip: padding-box;
   outline: 0;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -135,15 +135,11 @@
   font-size: 24px;
   color: white;
   font-weight: 400;
+  margin: 5px 0;
 }
 
 .nav__collapsedLink svg {
   font-size: 18px;
-}
-
-.nav__collapsedLink:hover svg {
-  transition: all 0.5s;
-  animation: rotate 0.2s linear forwards;
 }
 
 .nav__linksGenre {
@@ -153,6 +149,7 @@
   max-height: 250px;
   background: gray;
   border-radius: 12px;
+  margin-bottom: 10px;
 }
 
 .nav__linksGenre>a {
@@ -162,18 +159,4 @@
 
 .nav__linksGenre>a:hover {
   background-color: #111;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  50% {
-    transform: rotate(45deg);
-  }
-
-  100% {
-    transform: rotate(90deg);
-  }
 }

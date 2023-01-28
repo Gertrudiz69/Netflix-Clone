@@ -11,8 +11,6 @@ function MovieScreen() {
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
   const [date, setDate] = useState([]);
-  // eslint-disable-next-line
-  const [dir, setDir] = useState("");
   const [loading, setLoading] = useState(true);
 
   const pathname = window.location.pathname;
@@ -47,13 +45,9 @@ function MovieScreen() {
             ? unique
             : [...unique, item];
         }, [])
-      );
-      const dirFil = await request.data.crew.filter(
-        (dir) => dir.job === "Director"
-      );
-      setDir(dirFil[0]);
+      );   
       setLoading(false);
-      return { request, dirFil };
+      return { request };
     }
 
     fetchCast();

@@ -33,6 +33,7 @@ function OffCanvas({ movie, tv }) {
           >
             Inicio
           </Link>
+          <hr />
           <div onClick={() => handleClick(0)}>
             <h3 className="nav__collapsedLink">Péliculas <IoIosArrowForward /></h3>
           </div>
@@ -44,6 +45,7 @@ function OffCanvas({ movie, tv }) {
                 </a>
               ))}
           </div>
+          <hr />
           <div onClick={() => handleClick(1)}>
             <h3 className="nav__collapsedLink">Series <IoIosArrowForward /></h3>
           </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Loader, Nav } from '../components'
 import requests from '../Request';
 import './PeopleScreen.css'
+import { useNavigate } from 'react-router-dom';
 
 function PeopleScreen() {
 
@@ -10,6 +11,8 @@ function PeopleScreen() {
   // eslint-disable-next-line
   const [proyects, setProyects] = useState([])
   const [loading, setLoading] = useState(true)
+
+  const navigate = useNavigate()
 
   const pathname = window.location.pathname;
   const pathnameArr = pathname.split("/");
@@ -25,7 +28,13 @@ function PeopleScreen() {
 
     async function fetchProyects() {
       const request = await axios.get('/person/' + peopleId + requests.fetchProyects)
-      setProyects(request.data.cast)
+      const filtImg = request.data.cast.filter(item => item.poster_path )
+      setProyects(filtImg.reduce((unique, item) => {
+        return unique.find((i) => i.id === item.id)
+          ? unique
+          : [...unique, item];
+      }, []))
+
       setLoading(false)
       return request
     }
@@ -33,6 +42,7 @@ function PeopleScreen() {
     fetchProyects()
     fetchPeople()
   }, [peopleId])
+
 
   const img_url = "https://image.tmdb.org/t/p/original";
 
@@ -52,6 +62,16 @@ function PeopleScreen() {
                 </h1>
                 <h2>Biografia</h2>
                 <p className='peopleScreen__bio'>{people.biography}</p>
+              </div>
+            </div>
+            <div className='peopleScreen'>
+              <h2>Proyectos:</h2>
+              <div className='peopleScreen__proyectsGrid'>
+                {proyects.map(item => (
+                  <div className='peopleScreen__gridCard' key={item.id} onClick={() => navigate(`/${item.media_type}/${item.id}`)}>
+                    <img src={img_url + item.poster_path} alt={item.name || item.title} />
+                  </div>
+                ))}
               </div>
             </div>
           </div>

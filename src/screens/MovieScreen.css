@@ -131,6 +131,7 @@
 
 .movieScreen__genres {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
@@ -206,6 +207,10 @@
 @media (max-width: 600px) {
   .cast__carousel {
     min-width: 90vw;
+  }
+
+  .movieScreen__genres {
+    justify-content: center;
   }
 
   .movieScreen__details h1 {

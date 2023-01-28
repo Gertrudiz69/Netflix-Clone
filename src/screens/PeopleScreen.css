@@ -23,3 +23,69 @@
   background-color: #e50914;
   border-radius: 10px;
 }
+
+.peopleScreen {
+  margin-top: 50px;
+}
+
+.peopleScreen>h2 {
+  margin-left: 50px;
+  font-size: 48px;
+  color: white;
+}
+
+.peopleScreen__proyectsGrid {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 25px;
+}
+
+.peopleScreen__gridCard>img {
+  width: 180px;
+  cursor: pointer;
+  transition: all 0.5s;
+  user-select: none;
+}
+
+.peopleScreen__gridCard>img:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 1024px) {
+  .peopleScreen__gridCard>img {
+    width: 150px;
+  }
+}
+
+@media (max-width: 600px) {
+  .movieScreen__details>h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 450px) {
+  .peopleScreen__gridCard>img {
+    width: 120px;
+  }
+
+  .peopleScreen>h2 {
+    margin-left: 10px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 375px) {
+  .peopleScreen__gridCard>img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 320px) {
+  .peopleScreen__gridCard>img {
+    width: 80px;
+  }
+}
