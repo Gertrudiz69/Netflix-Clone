@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-dom";
 import "./App.css";
+import { VideoPlayer } from "./components";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
 import { GenereScreen, HomeScreen, LoginScreen, MovieScreen, ProfileScreen, SearchScreen, TvScreen, PeopleScreen } from './screens'
@@ -40,6 +41,7 @@ function App() {
             <Route exact path="/tv/:id" element={<TvScreen />} />
             <Route exact path='/search' element={<SearchScreen />} />
             <Route exact path='/people/:id' element={<PeopleScreen />} />
+            <Route exact path='/video' element={<VideoPlayer />} />
             <Route path="*" element={<Navigate to={'/'} />} />
           </Routes>
         )}

@@ -1,0 +1,26 @@
+.videoPlayer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+}
+
+.videoPlayer__video {
+  position: relative;
+  z-index: 100000;
+}
+
+.background__videoPlayer {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: #1119;
+  top: 0;
+  left: 0;
+  z-index: 90000;
+}

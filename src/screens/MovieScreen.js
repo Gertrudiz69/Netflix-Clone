@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./MovieScreen.css";
-import { Nav, Rating, Loader, Row } from "../components";
+import { Nav, Rating, Loader, Row, VideoPlayer } from "../components";
 import axios from "../axios";
 import requests from "../Request";
 import { Link } from "react-router-dom";
+import { BsFillPlayCircleFill } from "react-icons/bs";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 function MovieScreen() {
   const [movie, setMovie] = useState([]);
@@ -11,11 +13,23 @@ function MovieScreen() {
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
   const [date, setDate] = useState([]);
+  const [showTrailer, setShowTrailer] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const pathname = window.location.pathname;
   const pathnameArr = pathname.split("/");
   const movieId = pathnameArr[2];
+
+  const handleOpenTrailer = () => {
+    window.scrollTo(0,0)
+    setShowTrailer(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleCloseTrailer = () => {
+    setShowTrailer(false);
+    document.body.style.overflow = 'auto';
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -45,7 +59,7 @@ function MovieScreen() {
             ? unique
             : [...unique, item];
         }, [])
-      );   
+      );
       setLoading(false);
       return { request };
     }
@@ -75,7 +89,12 @@ function MovieScreen() {
           >
             <div className="movieScreen__overlay" />
             <div className="movieScreen__container">
-              <img src={img_url + movie.poster_path} alt={movie.title} />
+              <div>
+                <img src={img_url + movie.poster_path} alt={movie.title} />
+                <button className="trailer__video" onClick={() => handleOpenTrailer()}>
+                  Trailer <BsFillPlayCircleFill />
+                </button>
+              </div>
               <div className="movieScreen__details">
                 <h1>
                   {movie.title} <span>({date})</span>
@@ -109,7 +128,7 @@ function MovieScreen() {
                   {toggleCast ? (
                     <div className="cast__carousel">
                       {cast.map((cast) => (
-                        <div className="castCard" key={cast.name}>
+                        <div className="castCard" key={cast.id}>
                           <Link to={`/people/${cast.id}`}>
                             <img
                               loading="lazy"
@@ -152,6 +171,12 @@ function MovieScreen() {
             fetchUrl={fetchUrl}
             isLargeRow
           />
+          {showTrailer ? (
+            <>
+              <VideoPlayer media_type={"movie"} id={movieId} />
+              <button className="close__trailer" onClick={() => handleCloseTrailer()}><AiFillCloseCircle/></button>
+            </>
+          ) : null}
         </>
       )}
     </>

@@ -1,9 +1,11 @@
 import axios from "../axios";
 import React, { useEffect, useState } from "react";
 import requests from "../Request";
-import { Nav, Rating, Loader, Row } from "../components";
+import { Nav, Rating, Loader, Row, VideoPlayer } from "../components";
 import "./MovieScreen.css";
 import { Link } from "react-router-dom";
+import { BsFillPlayCircleFill } from "react-icons/bs";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 function TvScreen() {
   const [tvSerie, setTvSerie] = useState([]);
@@ -11,6 +13,7 @@ function TvScreen() {
   const [date, setDate] = useState([]);
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
+  const [showTrailer, setShowTrailer] = useState(false);
   // eslint-disable-next-line
   const [dir, setDir] = useState("");
   const [loading, setLoading] = useState(true);
@@ -18,6 +21,17 @@ function TvScreen() {
   const pathname = window.location.pathname;
   const pathnameArr = pathname.split("/");
   const tvSerieId = pathnameArr[2];
+
+  const handleOpenTrailer = () => {
+    window.scrollTo(0,0)
+    setShowTrailer(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleCloseTrailer = () => {
+    setShowTrailer(false);
+    document.body.style.overflow = 'auto';
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -91,7 +105,12 @@ function TvScreen() {
           >
             <div className="movieScreen__overlay" />
             <div className="movieScreen__container">
-              <img src={img_url + tvSerie.poster_path} alt={tvSerie.title} />
+              <div>
+                <img src={img_url + tvSerie.poster_path} alt={tvSerie.title} />
+                <button className="trailer__video" onClick={() => handleOpenTrailer()}>
+                  Trailer <BsFillPlayCircleFill />
+                </button>
+              </div>
               <div className="movieScreen__details">
                 <h1>
                   {tvSerie.name} <span>({date})</span>
@@ -169,6 +188,12 @@ function TvScreen() {
             isLargeRow
             isTvSeries={true}
           />
+          {showTrailer ? (
+            <>
+              <VideoPlayer media_type={"tv"} id={tvSerieId} />
+              <button className="close__trailer" onClick={() => handleCloseTrailer()}><AiFillCloseCircle/></button>
+            </>
+          ) : null}
         </>
       )}
     </>
