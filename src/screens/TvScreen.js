@@ -68,6 +68,7 @@ function TvScreen() {
       return request;
     }
 
+    movilBanner()
     fetchData();
   }, [tvSerieId, tvSerie]);
 
