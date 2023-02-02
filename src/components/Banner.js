@@ -58,7 +58,6 @@ function Banner() {
             </h1>
             <div className="banner__buttons">
               <button className="banner__button" onClick={() => navigate(`/tv/${movie.id}`)}>Ver</button>
-              <button className="banner__button">Mi Lista</button>
             </div>
             <h1 className="banner__description">
               {truncate(`${movie?.overview}`, 200)}

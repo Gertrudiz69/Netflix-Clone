@@ -6,6 +6,20 @@ import requests from '../Request'
 
 function VideoPlayer({id, media_type}) {
   const [url, setUrl] = useState('')
+  const [widthVideo, setWidthVideo] = useState('')
+  const [heightVideo, setHeightVideo] = useState('')
+
+  const widthDevice = () => {
+    const w = window.innerWidth
+
+    if(w >= 1440) {
+      setHeightVideo('500px')
+      setWidthVideo('900px')
+    } else {
+      setHeightVideo('360px')
+      setWidthVideo('640px')
+    }
+  }
 
   useEffect(() => {
     async function fetchVideo() {
@@ -23,6 +37,7 @@ function VideoPlayer({id, media_type}) {
       }
     }
 
+    widthDevice()
     fetchVideo()
   }, [media_type, id])
 
@@ -31,6 +46,8 @@ function VideoPlayer({id, media_type}) {
       <div className='videoPlayer__video'>
         <ReactPlayer 
           url={`https://www.youtube.com/watch?v=${url}`}
+          width={widthVideo}
+          height={heightVideo}
           controls
         />
       </div>

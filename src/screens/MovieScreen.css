@@ -206,7 +206,19 @@
   border-radius: 50%;
 }
 
+@media (max-width: 1440px) {
+  .close__trailer {
+    top: 100px;
+    right: 20%;
+  }
+}
+
 @media (max-width: 1024px) {
+  .close__trailer {
+    top: 100px;
+    right: 5%;
+  }
+
   .movieScreen {
     margin-bottom: 50px;
   }

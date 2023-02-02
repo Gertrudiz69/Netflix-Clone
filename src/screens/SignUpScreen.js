@@ -5,6 +5,7 @@ import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { RxCrossCircled } from 'react-icons/rx'
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 function SignUpScreen() {
   const [signUp, setSignUp] = useState(false);
@@ -14,6 +15,34 @@ function SignUpScreen() {
   const [checkLetter, setCheckLetter] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
   const [checkSpecial, setCheckSpecial] = useState(false);
+  const [visiblePass, setVisiblePass] = useState(false)
+  
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const showPass = () => {
+    passwordRef.current.type = 'text'
+    setVisiblePass(true)
+  } 
+  const showPass1 = () => {
+    const pass1 = document.querySelector("#pass-1");
+    const pass2 = document.querySelector("#pass-2");
+    pass1.type = 'text'
+    pass2.type = 'text'
+    setVisiblePass(true)
+  }
+
+  const hidePass = () => {
+    passwordRef.current.type = 'password'
+    setVisiblePass(false)
+  } 
+  const hidePass1 = () => {
+    const pass1 = document.querySelector("#pass-1");
+    const pass2 = document.querySelector("#pass-2");
+    pass1.type = 'password'
+    pass2.type = 'password'
+    setVisiblePass(false)
+  }
 
   function valid() {
     const pass1 = document.querySelector("#pass-1");
@@ -126,9 +155,6 @@ function SignUpScreen() {
     }
   };
 
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-
   const reg = (e) => {
     e.preventDefault();
     validate();
@@ -181,12 +207,15 @@ function SignUpScreen() {
               type="email"
               autoComplete="username"
             />
-            <input
-              ref={passwordRef}
-              placeholder="Contraseña"
-              type="password"
-              autoComplete="current-password"
-            />
+            <div className="input__password">
+              <input
+                ref={passwordRef}
+                placeholder="Contraseña"
+                type="password"
+                autoComplete="current-password"
+              />
+              {visiblePass ? <span onClick={() => hidePass()}><AiFillEye/></span> : <span onClick={() => showPass()}><AiFillEyeInvisible/></span>}
+            </div>
             <button type="submit" onClick={signIn}>
               Inicia Sesión
             </button>
@@ -214,21 +243,28 @@ function SignUpScreen() {
               autoComplete="username"
               required
             />
-            <input
-              id="pass-1"
-              placeholder="Nueva contraseña"
-              type="password"
-              autoComplete="new-password"
-              required
-              minLength={8}
-            />
-            <input
-              id="pass-2"
-              placeholder="Confirma la contraseña"
-              type="password"
-              autoComplete="new-password"
-              required
-            />
+            <div className="input__password">
+              <input
+                id="pass-1"
+                placeholder="Nueva contraseña"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={8}
+              />
+              {visiblePass ? <span onClick={() => hidePass1()}><AiFillEye/></span> : <span onClick={() => showPass1()}><AiFillEyeInvisible/></span>}
+            </div>
+            <div className="input__password">
+              <input
+                id="pass-2"
+                placeholder="Nueva contraseña"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={8}
+              />
+              {visiblePass ? <span onClick={() => hidePass1()}><AiFillEye/></span> : <span onClick={() => showPass1()}><AiFillEyeInvisible/></span>}
+            </div>
             <input hidden id="pass-ver" type="password" ref={passwordRef} />
             <div className="password__req">
               <ul>

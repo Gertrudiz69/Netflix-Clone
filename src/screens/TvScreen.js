@@ -14,6 +14,7 @@ function TvScreen() {
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [movil, setMovil] = useState(false)
   // eslint-disable-next-line
   const [dir, setDir] = useState("");
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,16 @@ function TvScreen() {
     setShowTrailer(false);
     document.body.style.overflow = 'auto';
   }
+
+  const movilBanner = () => {
+    const w = window.innerWidth;
+
+    if (w <= 768) {
+      setMovil(true);
+    } else {
+      setMovil(false);
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -107,9 +118,11 @@ function TvScreen() {
             <div className="movieScreen__container">
               <div>
                 <img src={img_url + tvSerie.poster_path} alt={tvSerie.title} />
-                <button className="trailer__video" onClick={() => handleOpenTrailer()}>
-                  Trailer <BsFillPlayCircleFill />
-                </button>
+                {!movil ? (
+                  <button className="trailer__video" onClick={() => handleOpenTrailer()}>
+                    Trailer <BsFillPlayCircleFill />
+                  </button>
+                ) : null}
               </div>
               <div className="movieScreen__details">
                 <h1>

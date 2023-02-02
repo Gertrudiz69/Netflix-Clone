@@ -44,6 +44,26 @@ li {
   padding: 5px 15px;
 }
 
+.input__password>input {
+  width: 100%;
+  outline-width: 0;
+  height: 40px;
+  margin-bottom: 14px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 15px;
+  margin-bottom: -20px;
+}
+
+.input__password>span {
+  position: relative;
+  top: -24px;
+  right: -110px;
+  font-size: 26px;
+  color: #1118;
+  cursor: pointer;
+}
+
 .signUpScreen>form>button {
   padding: 16px 20px;
   font-size: 1rem;
@@ -115,6 +135,7 @@ li {
   top: calc(50% - 150px);
   display: none;
   border-radius: 18px;
+  z-index: 1000;
 }
 
 .error__details {

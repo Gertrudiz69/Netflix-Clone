@@ -12,6 +12,7 @@ function MovieScreen() {
   const [toggleCast, setToggleCast] = useState(true);
   const [cast, setCast] = useState([]);
   const [crew, setCrew] = useState([]);
+  const [movil, setMovil] = useState(false)
   const [date, setDate] = useState([]);
   const [showTrailer, setShowTrailer] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,16 @@ function MovieScreen() {
     document.body.style.overflow = 'auto';
   }
 
+  const movilBanner = () => {
+    const w = window.innerWidth;
+
+    if (w <= 768) {
+      setMovil(true);
+    } else {
+      setMovil(false);
+    }
+  };
+
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(
@@ -45,6 +56,7 @@ function MovieScreen() {
       return request;
     }
 
+    movilBanner()
     fetchData();
   }, [movieId, pathname]);
 
@@ -91,9 +103,11 @@ function MovieScreen() {
             <div className="movieScreen__container">
               <div>
                 <img src={img_url + movie.poster_path} alt={movie.title} />
-                <button className="trailer__video" onClick={() => handleOpenTrailer()}>
-                  Trailer <BsFillPlayCircleFill />
-                </button>
+                {!movil ? (
+                  <button className="trailer__video" onClick={() => handleOpenTrailer()}>
+                    Trailer <BsFillPlayCircleFill />
+                  </button>
+                ) : null}
               </div>
               <div className="movieScreen__details">
                 <h1>
