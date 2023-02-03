@@ -8,6 +8,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTv
   const [displayArrL, setDisplayArrL] = useState(false)
   const [displayArrR, setDisplayArrR] = useState(true)
   const [movil, setMovil] = useState(false);
+  const [showRow, setShowRow] = useState(true)
   const row = useRef(null)
 
   const movilBanner = () => {
@@ -78,6 +79,11 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTv
     async function fetchData() {
       const request = await axios.get(fetchUrl);
       setMovies(request.data.results.filter(movie => movie.backdrop_path && movie.poster_path));
+      if(request.data.results.length <= 0) {
+        setShowRow(false)
+      } else {
+        setShowRow(true)
+      }
       return request;
     }
 
@@ -85,43 +91,49 @@ const Row = ({ title, fetchUrl, isLargeRow = false, id, idArrowR, idArrowL, isTv
     fetchData();
   }, [fetchUrl]);
   
+  console.log(movies);
+
   return (
-    <div className="row">
-      <h2>{title}</h2>
-      <div className="row__posters" id={id} ref={row}>
-        {!movil ? (
-          <div id={idArrowL} className="arrow__l" onClick={scrollL}>
-            {displayArrL ? <IoIosArrowBack /> : null}
-          </div>
-        ) : null }
-        {movies.map(
-          (movie) =>
-            (isLargeRow ? movie.poster_path : movie.backdrop_path) && (
-              <img
-                className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-                key={movie.id}
-                src={`${img_url}${
-                  isLargeRow ? movie.poster_path : movie.backdrop_path
-                }`}
-                alt={movie?.name || movie?.title || movie?.original_name}
-                loading='lazy'
-                onClick={() => {
-                  if(isTvSeries === true || movie?.media_type === 'tv') {
-                    window.location.replace(`/tv/${movie.id}`)
-                  } else {
-                    window.location.replace(`/movie/${movie.id}`)
-                  }
-                }}
-              />
-            )
-        )}
-        {!movil ? (
-          <div id={idArrowR} className="arrow__r" onClick={scrollR}>
-            {displayArrR ? <IoIosArrowForward /> : null}
-          </div>
-        ) : null }
+    <>
+      {showRow ? (
+      <div className="row">
+        <h2>{title}</h2>
+        <div className="row__posters" id={id} ref={row}>
+          {!movil ? (
+            <div id={idArrowL} className="arrow__l" onClick={scrollL}>
+              {displayArrL ? <IoIosArrowBack /> : null}
+            </div>
+          ) : null }
+          {movies.map(
+            (movie) =>
+              (isLargeRow ? movie.poster_path : movie.backdrop_path) && (
+                <img
+                  className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+                  key={movie.id}
+                  src={`${img_url}${
+                    isLargeRow ? movie.poster_path : movie.backdrop_path
+                  }`}
+                  alt={movie?.name || movie?.title || movie?.original_name}
+                  loading='lazy'
+                  onClick={() => {
+                    if(isTvSeries === true || movie?.media_type === 'tv') {
+                      window.location.replace(`/tv/${movie.id}`)
+                    } else {
+                      window.location.replace(`/movie/${movie.id}`)
+                    }
+                  }}
+                />
+              )
+          )}
+          {!movil ? (
+            <div id={idArrowR} className="arrow__r" onClick={scrollR}>
+              {displayArrR ? <IoIosArrowForward /> : null}
+            </div>
+          ) : null }
+        </div>
       </div>
-    </div>
+      ) : null}
+    </>
   );
 };
 
