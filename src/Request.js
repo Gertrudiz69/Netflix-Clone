@@ -26,7 +26,6 @@ const requests = {
   fetchWesternMovies: `/discover/movie?api_key=${API_KEY}&with_genres=37&language=es-MX`,
   fetchGenereMovies: `/genre/movie/list?api_key=${API_KEY}&language=es-MX`,
   fetchGenereSerie: `/genre/tv/list?api_key=${API_KEY}&language=es-MX`,
-
   fetchActionTv: `/discover/tv?api_key=${API_KEY}&with_genres=10759&language=es-MX`,
   fetchAnimationTv: `/discover/tv?api_key=${API_KEY}&with_genres=16&language=es-MX`,
   fetchComedyTv: `/discover/tv?api_key=${API_KEY}&with_genres=35&language=es-MX`,
@@ -43,7 +42,6 @@ const requests = {
   fetchTalkTv: `/discover/tv?api_key=${API_KEY}&with_genres=10767&language=es-MX`,
   fetchWarTv: `/discover/tv?api_key=${API_KEY}&with_genres=10768&language=es-MX`,
   fetchWesternTv: `/discover/tv?api_key=${API_KEY}&with_genres=37&language=es-MX`,
-
   fetchProyects: `/combined_credits?api_key=${API_KEY}&language=es-MX`,
   fetchByID : `?api_key=${API_KEY}`,
   fetchCast: `/credits?api_key=${API_KEY}&language=es-MX`,
